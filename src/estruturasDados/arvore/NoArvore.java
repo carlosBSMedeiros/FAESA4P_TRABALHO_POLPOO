@@ -1,4 +1,6 @@
-package estruturasDados;
+package estruturasDados.arvore;
+
+import estruturasDados.Item;
 
 public class NoArvore {
 
