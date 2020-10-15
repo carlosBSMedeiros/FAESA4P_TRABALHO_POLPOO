@@ -2,7 +2,10 @@ package controllers;
 
 import java.io.IOException;
 
+import estruturasDados.FilaPessoa;
 import estruturasDados.Tabela;
+import models.PessoaBanco;
+import utils.Cronometro;
 import utils.InOutArquivos;
 
 public class Main {
@@ -18,12 +21,14 @@ public class Main {
 	}
 	
 	public static void iniciaApp() {
-		
+		Cronometro.iniciaCronometro();
 		instanciaTabela(500);
 		povoaTabelaPeloTXT();
 		ordenaTabela();
 		geraTXTOrdenado();
 		buscaEGeraTXTSaida();
+		Cronometro.paraCronometro();
+
 	}
 	
 	private static void instanciaTabela(int nElem) {
@@ -32,7 +37,7 @@ public class Main {
 	
 	private static void povoaTabelaPeloTXT() {
 		try {
-			InOutArquivos.leitorTXTPessoaBanco("D:\\WorkSpaces\\TrabalhoPOLPOO\\ProjetoLOLPOO\\archives\\inAlea500.txt", tabela);
+			InOutArquivos.leitorTXTPessoaBanco("D:\\WorkSpaces\\TrabalhoPOLPOO\\FAESA4P_TRABALHO_POLPOO\\archives\\inAlea500.txt", tabela);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -54,7 +59,12 @@ public class Main {
 	}
 	
 	private static void buscaEGeraTXTSaida() {
+		FilaPessoa result = Buscas.BuscaBinaria(tabela, "12399999999");
 		
+		while(result.getSize() != 0) {
+			PessoaBanco aux = result.desenfileirar();
+			System.out.println(aux.getCpf() + " " + aux.getAgencia() + " " + aux.getConta());
+		}
 	}
 
 }

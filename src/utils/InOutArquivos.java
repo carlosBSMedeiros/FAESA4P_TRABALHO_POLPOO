@@ -46,7 +46,7 @@ public class InOutArquivos {
 	}
 	
 	public static void escritorTXTPessoaBanco(Tabela tabela) throws IOException  {
-		String path =  "D:\\WorkSpaces\\TrabalhoPOLPOO\\ProjetoLOLPOO\\archives\\HeapAlea500.txt";
+		String path =  "D:\\WorkSpaces\\TrabalhoPOLPOO\\FAESA4P_TRABALHO_POLPOO\\archives\\HeapAlea500.txt";
 		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
 		StringBuilder strb = new StringBuilder();
 		
