@@ -46,7 +46,7 @@ public class Main {
 	private static void ordenaTabela() {
 		//refatorar metodo com enuns para os algoritmos de ordenacao, e switch case
 		
-		Sort.HeapSort(tabela);
+		Sort.heapSort(tabela);
 
 	}
 	
