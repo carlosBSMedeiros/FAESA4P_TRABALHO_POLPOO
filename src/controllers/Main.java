@@ -22,7 +22,7 @@ public class Main {
 	
 	public static void iniciaApp() {
 		Cronometro.iniciaCronometro();
-		instanciaTabela(500);
+		instanciaTabela(10);
 		povoaTabelaPeloTXT();
 		ordenaTabela();
 		geraTXTOrdenado();
@@ -37,7 +37,7 @@ public class Main {
 	
 	private static void povoaTabelaPeloTXT() {
 		try {
-			InOutArquivos.leitorTXTPessoaBanco("D:\\WorkSpaces\\TrabalhoPOLPOO\\FAESA4P_TRABALHO_POLPOO\\archives\\inAlea500.txt", tabela);
+			InOutArquivos.leitorTXTPessoaBanco("C:\\el\\Fabio.Helmer\\treinamento\\javaFaesa\\trabalho\\FAESA4P_TRABALHO_POLPOO\\archives\\inAlea500.txt", tabela);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -46,8 +46,8 @@ public class Main {
 	private static void ordenaTabela() {
 		//refatorar metodo com enuns para os algoritmos de ordenacao, e switch case
 		
-		Sort.heapSort(tabela);
-
+		//Sort.heapSort(tabela);
+		Sort.quicksort(tabela);
 	}
 	
 	private static void geraTXTOrdenado() {

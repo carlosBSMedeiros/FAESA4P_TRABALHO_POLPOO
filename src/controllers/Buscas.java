@@ -5,6 +5,7 @@ import estruturasDados.Tabela;
 
 public class Buscas {
 
+	
 	public static FilaPessoa BuscaBinaria(Tabela tabela, String cpfBusca) {
 		FilaPessoa result = new FilaPessoa();
 

@@ -6,45 +6,42 @@ import models.PessoaBanco;
 public class QuickSort {
 
 	public static void quicksort(Tabela tabela) {
-		ordena(tabela);
+		ordena(tabela,0 ,tabela.getNElem() - 1);
 	}
 
-	private static void ordena (Tabela tabela){
+	private static void  ordena (Tabela tabela, int esq, int dir){
 		// esq e zero, então sempre a primeira pessoa
 		//dir e ultimo elemento, então sempre a ultima pessoa
 		
-		int nElem =  tabela.getNElem() - 1;
-		
-		PessoaBanco pivo;
-		PessoaBanco esq = tabela.getPessoa(0);
-		PessoaBanco dir= tabela.getPessoa(nElem);
-		PessoaBanco temp;
+		int i = esq;
+		int j = dir;
 
-		pivo = tabela.getPessoa(nElem/2);
+		PessoaBanco pivo = tabela.getVetor()[i+j/2];
+		PessoaBanco temp;
 		
-//		do {
-//			while (this.vetor[i].getChave() < pivo) {
-//				i++;
-//			}
-//			
-//			while (this.vetor[j].getChave() > pivo) {
-//				j--;
-//			}
-//
-//			if (i <= j) {
-//				temp = this.vetor[i];
-//				this.vetor[i] = this.vetor[j];
-//				this.vetor[j] = temp;
-//				i++;
-//				j--;
-//			}
-//		} while (i <= j);
-//		if (esq < j) {
-//			ordena(esq, j);
-//		}
-//		if (dir > i) {
-//			ordena(i, dir);
-//		}
+		do {
+			while (Compare.pessoa(tabela.getVetor()[i], pivo) > 0  ) {
+				i++;
+			}
+			
+			while (Compare.pessoa(tabela.getVetor()[j], pivo) < 0 ) {
+				j--;
+			}
+
+			if (i <= j) {
+				temp = tabela.getPessoa(i);
+				tabela.getVetor()[i] = tabela.getVetor()[j] ;
+				tabela.getVetor()[j] = temp;
+				i++;
+				j--;
+			}
+		} while (i <= j);
+		if (esq < j) {
+			ordena(tabela,esq, j);
+		}
+		if (dir > i) {
+			ordena(tabela, i, dir);
+		}
 	}
 
 }
