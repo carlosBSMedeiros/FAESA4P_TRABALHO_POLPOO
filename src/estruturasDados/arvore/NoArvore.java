@@ -1,23 +1,20 @@
 package estruturasDados.arvore;
 
-import estruturasDados.Item;
+import models.PessoaBanco;
 
 public class NoArvore {
-
-	private Item info;
+	private PessoaBanco info;
 	private NoArvore dir, esq;
-	
-	public NoArvore(Item info) {
-		this.info =  info;
-		this.dir = null;
-		this.esq = null;
+
+	public NoArvore(PessoaBanco info) {
+		this.info = info;
 	}
 
-	public Item getInfo() {
+	public PessoaBanco getInfo() {
 		return info;
 	}
 
-	public void setInfo(Item info) {
+	public void setInfo(PessoaBanco info) {
 		this.info = info;
 	}
 
@@ -36,7 +33,5 @@ public class NoArvore {
 	public void setEsq(NoArvore esq) {
 		this.esq = esq;
 	}
-	
-	
 
 }
