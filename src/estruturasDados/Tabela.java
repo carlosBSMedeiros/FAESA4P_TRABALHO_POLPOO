@@ -52,4 +52,14 @@ public class Tabela {
 		return this.vetor;
 	}
 
+	public PessoaBanco getPessoa(int index) {
+		
+		if(index > this.nElem || index < 0) {
+			return null;
+		}
+		
+		return this.vetor[index];
+
+	}
+	
 }
