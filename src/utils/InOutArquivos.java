@@ -6,8 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import controllers.Buscas;
+import estruturasDados.FilaPessoa;
 import estruturasDados.Tabela;
 import models.PessoaBanco;
+import services.find.BuscaBinFindService;
 
 //	//cpf;nome;agência;conta;saldo
 
@@ -67,6 +70,26 @@ public class InOutArquivos {
 		
 		buffWrite.close();
 		
+	}
+	
+	public static void leitorTXTBusca(String path, Tabela tabela) throws IOException {
+		BufferedReader buffRead = new BufferedReader(new FileReader(path));
+		String linha = "";
+		
+		while (true) {
+			if (linha != null) {
+				
+				if(!linha.equals("")) {
+					String[] cpfBusca = linha.split(";");
+					FilaPessoa result = Buscas.FindService(tabela, cpfBusca[0], new BuscaBinFindService());
+					
+				}
+				
+			} else
+				break;
+			linha = buffRead.readLine();
+		}
+		buffRead.close();
 	}
 	
 }

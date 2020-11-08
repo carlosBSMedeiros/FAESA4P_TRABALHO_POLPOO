@@ -1,12 +1,13 @@
 package controllers;
 
 import estruturasDados.Tabela;
-import metodos.HeapSort;
+import services.sort.HeapSortService;
+import services.sort.TabelaSortService;
 
 public class Sort {
 
-	public static void HeapSort(Tabela tabela) {
-		HeapSort.heapSort(tabela);
+	public static void SortService(Tabela tabela, TabelaSortService tabelaSortService) {
+		 tabelaSortService.sort(tabela);
 	}
 
 }
