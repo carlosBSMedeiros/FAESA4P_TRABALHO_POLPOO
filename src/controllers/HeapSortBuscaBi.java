@@ -1,11 +1,6 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import estruturasDados.FilaPessoa;
 import estruturasDados.Tabela;
-import services.find.BuscaBinFindService;
 import services.sort.HeapSortService;
 import utils.Cronometro;
 import utils.InOutArquivos;
@@ -34,7 +29,7 @@ public class HeapSortBuscaBi implements InterfaceControllers {
 
 	public void ordenaTabela() {
 
-		Sort.SortService(tabela, new HeapSortService());
+		Ordenacoes.SortService(tabela, new HeapSortService());
 
 	}
 
