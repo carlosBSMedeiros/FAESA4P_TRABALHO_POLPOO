@@ -4,7 +4,7 @@ import models.PessoaBanco;
 
 public class Compare {
 	
-	protected static byte pessoa(PessoaBanco pessoa1, PessoaBanco pessoa02) {
+	public static byte pessoa(PessoaBanco pessoa1, PessoaBanco pessoa02) {
 
 		int compareCpf = pessoa1.getCpf().compareTo(pessoa02.getCpf());
 
@@ -17,7 +17,7 @@ public class Compare {
 		}
 	}
 
-	protected static byte pessoaAgencia(PessoaBanco pessoa1, PessoaBanco pessoa02) {
+	private static byte pessoaAgencia(PessoaBanco pessoa1, PessoaBanco pessoa02) {
 
 		int compareAgencia = pessoa1.getAgencia().compareTo(pessoa02.getAgencia());
 
@@ -30,7 +30,7 @@ public class Compare {
 		}
 	}
 
-	protected static byte pessoaConta(PessoaBanco pessoa1, PessoaBanco pessoa02) {
+	private static byte pessoaConta(PessoaBanco pessoa1, PessoaBanco pessoa02) {
 		int comparaConta = pessoa1.getConta().compareTo(pessoa02.getConta());
 
 		if (comparaConta < 0) {

@@ -2,71 +2,197 @@ package utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import controllers.Buscas;
+import estruturasDados.FilaPessoa;
 import estruturasDados.Tabela;
 import models.PessoaBanco;
+import services.find.BuscaBinFindService;
 
 //	//cpf;nome;agência;conta;saldo
 
 public class InOutArquivos {
 
-	public static void leitorTXTPessoaBanco(String path, Tabela tabela) throws IOException {
-		BufferedReader buffRead = new BufferedReader(new FileReader(path));
-		String linha = "";
-		
-		while (true) {
-			if (linha != null) {
-				
-				if(!linha.equals("")) {
-					preencheTabela(linha, tabela);
-				}
-				
-			} else
-				break;
-			linha = buffRead.readLine();
+	public static void leitorTXTPessoaBanco(String path, Tabela tabela) {
+		try {
+
+			BufferedReader buffRead = new BufferedReader(new FileReader(path));
+			String linha = "";
+
+			while (true) {
+				if (linha != null) {
+
+					if (!linha.equals("")) {
+						preencheTabela(linha, tabela);
+					}
+
+				} else
+					break;
+				linha = buffRead.readLine();
+			}
+			buffRead.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		buffRead.close();
 	}
-	
+
 	private static void preencheTabela(String linha, Tabela tabela) {
 		PessoaBanco pessoa = new PessoaBanco();
-		
+
 		String[] aux = linha.split(";");
-		
+
 		pessoa.setCpf(aux[0]);
 		pessoa.setNome(aux[1]);
 		pessoa.setAgencia(aux[2]);
 		pessoa.setConta(aux[3]);
 		pessoa.setSaldo(aux[4]);
-		
+
 		tabela.addItem(pessoa);
 	}
-	
-	public static void escritorTXTPessoaBanco(Tabela tabela) throws IOException  {
-		String path =  "D:\\WorkSpaces\\TrabalhoPOLPOO\\FAESA4P_TRABALHO_POLPOO\\archives\\HeapAlea500.txt";
-		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+
+	public static void escritorTXTPessoaBanco(Tabela tabela) {
+		try {
+
+			String path = "arquivos_out\\HeapAlea500.txt";
+			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+			StringBuilder strb = new StringBuilder();
+
+			for (int i = 0; i < tabela.getNElem(); i++) {
+				strb.delete(0, strb.length());
+
+				PessoaBanco aux = tabela.getVetor()[i];
+
+				strb.append(aux.getCpf()).append(";").append(aux.getNome()).append(";").append(aux.getAgencia())
+						.append(";").append(aux.getConta()).append(";").append(aux.getSaldo());
+
+				buffWrite.append(strb.toString() + "\n");
+
+			}
+
+			buffWrite.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void leitorTXTBusca(Tabela tabela) {
+		BufferedReader buffRead;
+		BufferedWriter buffWrite;
+		try {
+
+			String path = "arquivos_out\\HeapAlea500.txt";
+			buffWrite = new BufferedWriter(new FileWriter(path));
+
+			buffRead = new BufferedReader(new FileReader("arquivos_in\\Conta.txt"));
+			String linha = "";
+
+			while (true) {
+				if (linha != null) {
+
+					if (!linha.equals("")) {
+						String cpfBusca = linha.split(";")[0];
+						FilaPessoa result = Buscas.FindService(tabela, cpfBusca, new BuscaBinFindService());
+						escritorTXTBusca(buffWrite, result, cpfBusca);
+					}
+
+				} else
+					break;
+
+				linha = buffRead.readLine();
+			}
+
+			buffRead.close();
+			buffWrite.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NÃO ENCONTRADO");
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static boolean escritorTXTBusca(BufferedWriter buffWrite, FilaPessoa result, String cpfBusca) {
+
+		try {
+
+			if (result == null || result.getSize() == 0) {
+
+				String msg = montaMsgDoTXTSaida(null, cpfBusca);
+				buffWrite.append(msg).append("\n");
+				return false;
+
+			} else {
+
+				String msg = montaMsgDoTXTSaida(result, cpfBusca);
+				buffWrite.append(msg).append("\n");
+
+			}
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	private static String montaMsgDoTXTSaida(FilaPessoa result, String cpfBusca) {
 		StringBuilder strb = new StringBuilder();
 		
-		for(int i = 0; i < tabela.getNElem(); i++) {
-			strb.delete(0, strb.length());
+		strb.append("CPF ").append(cpfBusca);
+		
+		if(result == null) {
+			strb.append("\nNÃO HÁ NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
+		} else {
 			
-			PessoaBanco aux = tabela.getVetor()[i];
-			
-			strb.append(aux.getCpf()).append(";")
-			.append(aux.getNome()).append(";")
-			.append(aux.getAgencia()).append(";")
-			.append(aux.getConta()).append(";")
-			.append(aux.getSaldo());
-			
-			buffWrite.append(strb.toString() + "\n");
+			Double saldoTotal = 0.0;
 
+			strb.append("   NOME:").append(result.getPrimeiro().getNome()).append("\n");
+
+			while(result.getSize() > 0) {
+			
+				PessoaBanco pessoaBanco = result.desenfileirar();
+				
+				strb.append("Ag: ").append(pessoaBanco.getAgencia());
+				
+				switch(pessoaBanco.getConta().substring(0, 3)) {
+				
+					case "001":
+						strb.append(" Conta Comum: ");
+						break;
+					
+					case "002":
+						strb.append(" Conta Especial: ");
+						break;
+		
+					case "010":
+						strb.append(" Conta Poupança: ");
+						break;
+		
+					default:
+						strb.append(" Conta não especificada: ");
+						break;
+	
+				}
+				
+				strb.append(pessoaBanco.getConta()).append(" Saldo: R$ ").append(pessoaBanco.getSaldo() + "\n");
+				saldoTotal += Double.parseDouble(pessoaBanco.getSaldo());
+			//Ag: 1234 Conta Comum: 00112345 Saldo: R$ 2300.00
+			}
+			
+			strb.append("Saldo Total: R$").append(saldoTotal).append("\n");
+			
 		}
 		
-		buffWrite.close();
-		
+		return strb.toString();
 	}
-	
+
 }

@@ -1,11 +1,12 @@
-package metodos;
+package services.sort;
 
 import estruturasDados.Tabela;
+import metodos.Compare;
 import models.PessoaBanco;
 
-public class HeapSort {
+public class HeapSortService implements TabelaSortService{
 	
-	public static void heapSort(Tabela tabela) {
+	public void sort(Tabela tabela) {
 
 		int dir = tabela.getNElem() - 1;
 		int esq = (dir - 1) / 2;
@@ -23,7 +24,7 @@ public class HeapSort {
 		}
 	}
 
-	private static void refazHeap(int esq, int dir, Tabela tabela) {
+	private void refazHeap(int esq, int dir, Tabela tabela) {
 		int i = esq;
 		int mF = 2 * i + 1; // maior filho
 		PessoaBanco raiz = tabela.getVetor()[i];
