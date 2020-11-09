@@ -39,9 +39,9 @@ public class BuscaBinFindService implements TabelaFindService {
 
 	private boolean verificaEsquerda(Tabela tabela, FilaPessoa result, int meio) {
 		
-		int esq = meio - 1;
+		int esq = meio - 1; 
 		
-		if (tabela.getVetor()[esq] != null && tabela.getVetor()[meio].getCpf().compareTo(tabela.getVetor()[esq].getCpf()) == 0) {
+		if (esq >= 0 && tabela.getVetor()[esq] != null && tabela.getVetor()[meio].getCpf().compareTo(tabela.getVetor()[esq].getCpf()) == 0) {
 			verificaEsquerda(tabela, result, esq);
 			result.enfileirar(tabela.getVetor()[esq]);
 			return true;
@@ -55,7 +55,7 @@ public class BuscaBinFindService implements TabelaFindService {
 		
 		int dir = meio + 1;
 		
-		if (tabela.getVetor()[dir] != null && tabela.getVetor()[meio].getCpf().compareTo(tabela.getVetor()[dir].getCpf()) == 0) {
+		if (dir < tabela.getNElem() && tabela.getVetor()[dir] != null && tabela.getVetor()[meio].getCpf().compareTo(tabela.getVetor()[dir].getCpf()) == 0) {
 			result.enfileirar(tabela.getVetor()[dir]);
 			verificaDireita(tabela, result, dir);
 			return true;
