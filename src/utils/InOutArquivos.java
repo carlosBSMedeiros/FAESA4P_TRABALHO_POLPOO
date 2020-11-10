@@ -99,6 +99,7 @@ public class InOutArquivos {
 					if (!linha.equals("")) {
 						String cpfBusca = linha.split(";")[0];
 						FilaPessoa result = Buscas.FindService(tabela, cpfBusca, new BuscaBinFindService());
+						
 						escritorTXTBusca(buffWrite, result, cpfBusca);
 					}
 

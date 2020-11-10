@@ -8,9 +8,13 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
-		
+		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();		
 		hpbb.iniciaApp();
+		
+		//QuickSort
+		//QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
+		//buscaBi.iniciaApp();
+		
 		 
 	}
 
