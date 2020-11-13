@@ -2,18 +2,18 @@ package estruturasDados.arvore;
 
 public class ArvoreABB {
 	
-	private NoArvoreABB raiz;
+	private NoArvore raiz;
 
-	public ArvoreABB(NoArvoreABB raiz) {
+	public ArvoreABB(NoArvore raiz) {
 		super();
 		this.raiz = raiz;
 	}
 	
-	public NoArvoreABB getRaiz() {
+	public NoArvore getRaiz() {
 		return raiz;
 	}
 
-	public void setRaiz(NoArvoreABB raiz) {
+	public void setRaiz(NoArvore raiz) {
 		this.raiz = raiz;
 	}
 

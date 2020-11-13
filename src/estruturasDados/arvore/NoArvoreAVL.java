@@ -3,7 +3,7 @@ package estruturasDados.arvore;
 import estruturasDados.Item;
 import models.PessoaBanco;
 
-public class NoArvoreAVL extends NoArvoreABB {
+public class NoArvoreAVL extends NoArvore {
 
 	private byte fatorBalanceamento;
 

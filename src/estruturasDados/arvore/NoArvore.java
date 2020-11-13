@@ -2,11 +2,11 @@ package estruturasDados.arvore;
 
 import models.PessoaBanco;
 
-public class NoArvoreABB {
+public class NoArvore {
 	private PessoaBanco info;
-	private NoArvoreABB dir, esq;
+	private NoArvore dir, esq;
 
-	public NoArvoreABB(PessoaBanco info) {
+	public NoArvore(PessoaBanco info) {
 		this.info = info;
 	}
 
@@ -18,19 +18,19 @@ public class NoArvoreABB {
 		this.info = info;
 	}
 
-	public NoArvoreABB getDir() {
+	public NoArvore getDir() {
 		return dir;
 	}
 
-	public void setDir(NoArvoreABB dir) {
+	public void setDir(NoArvore dir) {
 		this.dir = dir;
 	}
 
-	public NoArvoreABB getEsq() {
+	public NoArvore getEsq() {
 		return esq;
 	}
 
-	public void setEsq(NoArvoreABB esq) {
+	public void setEsq(NoArvore esq) {
 		this.esq = esq;
 	}
 

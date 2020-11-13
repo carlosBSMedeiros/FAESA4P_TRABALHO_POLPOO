@@ -35,7 +35,7 @@ public class ArvoreAVL {
 		this.raiz = this.insere(pessoaBanco, this.raiz);
 	}
 
-	private NoArvoreAVL insere(PessoaBanco pessoaBanco, NoArvoreABB no) {
+	private NoArvoreAVL insere(PessoaBanco pessoaBanco, NoArvore no) {
 		if (no == null) {
 			NoArvoreAVL novo = new NoArvoreAVL(pessoaBanco);
 			this.h = true;
@@ -45,17 +45,17 @@ public class ArvoreAVL {
 				// Insere � esquerda e verifica se precisa balancear � direita
 				no.setEsq(this.insere(pessoaBanco, no.getEsq()));
 				no = this.balancearDir(no);
-				return (NoArvoreAVL)no;
+				return (NoArvoreAVL) no;
 			} else {
 //				 Insere � direita e verifica se precisa balancear � esquerda
 				no.setDir(this.insere(pessoaBanco, no.getDir()));
 				no = this.balancearEsq(no);
-				return (NoArvoreAVL)no;
+				return (NoArvoreAVL) no;
 			}
 		}
 	}
 
-	private NoArvoreAVL balancearDir(NoArvoreABB no) {
+	private NoArvoreAVL balancearDir(NoArvore no) {
 		if (this.h) {
 			switch (((NoArvoreAVL) no).getFatorBalanceamento()) {
 			case 1:
@@ -72,7 +72,7 @@ public class ArvoreAVL {
 		return (NoArvoreAVL) no;
 	}
 
-	private NoArvoreAVL balancearEsq(NoArvoreABB no) {
+	private NoArvoreAVL balancearEsq(NoArvore no) {
 		if (this.h)
 			switch (((NoArvoreAVL) no).getFatorBalanceamento()) {
 			case -1:
@@ -88,8 +88,8 @@ public class ArvoreAVL {
 		return (NoArvoreAVL) no;
 	}
 
-	private NoArvoreAVL rotacaoDireita(NoArvoreABB no) {
-		NoArvoreABB temp1, temp2;
+	private NoArvoreAVL rotacaoDireita(NoArvore no) {
+		NoArvore temp1, temp2;
 		temp1 = no.getEsq();
 		if (((NoArvoreAVL) temp1).getFatorBalanceamento() == -1) {
 			no.setEsq(temp1.getDir());
@@ -117,7 +117,7 @@ public class ArvoreAVL {
 		return (NoArvoreAVL) no;
 	}
 
-	private NoArvoreAVL rotacaoEsquerda(NoArvoreABB no) {
+	private NoArvoreAVL rotacaoEsquerda(NoArvore no) {
 		NoArvoreAVL temp1, temp2;
 		temp1 = (NoArvoreAVL) no.getDir();
 		if (temp1.getFatorBalanceamento() == 1) {
@@ -126,34 +126,32 @@ public class ArvoreAVL {
 			((NoArvoreAVL) no).setFatorBalanceamento((byte) 0);
 			no = temp1;
 		} else {
-			temp2 = (NoArvoreAVL)temp1.getEsq();
+			temp2 = (NoArvoreAVL) temp1.getEsq();
 			temp1.setEsq(temp2.getDir());
 			temp2.setDir(temp1);
 			no.setDir(temp2.getEsq());
 			temp2.setEsq(no);
 			if (temp2.getFatorBalanceamento() == 1)
-				((NoArvoreAVL)no).setFatorBalanceamento((byte) -1);
+				((NoArvoreAVL) no).setFatorBalanceamento((byte) -1);
 			else
-				((NoArvoreAVL)no).setFatorBalanceamento((byte) 0);
+				((NoArvoreAVL) no).setFatorBalanceamento((byte) 0);
 			if (temp2.getFatorBalanceamento() == -1)
 				temp1.setFatorBalanceamento((byte) 1);
 			else
 				temp1.setFatorBalanceamento((byte) 0);
 			no = temp2;
 		}
-		((NoArvoreAVL)no).setFatorBalanceamento((byte) 0);
+		((NoArvoreAVL) no).setFatorBalanceamento((byte) 0);
 		this.h = false;
-		return (NoArvoreAVL)no;
+		return (NoArvoreAVL) no;
 	}
 
 	public ArrayList<PessoaBanco> CamPreOrdem() {
-		int[] n = new int[1];
-		n[0] = 0;
 		ArrayList<PessoaBanco> lista = new ArrayList<PessoaBanco>();
 		return (FazCamPreOrdem(this.raiz, lista));
 	}
 
-	private ArrayList<PessoaBanco> FazCamPreOrdem(NoArvoreABB arv, ArrayList<PessoaBanco> lista) {
+	private ArrayList<PessoaBanco> FazCamPreOrdem(NoArvore arv, ArrayList<PessoaBanco> lista) {
 		if (arv != null) {
 			lista.add(arv.getInfo());
 			lista = FazCamPreOrdem(arv.getEsq(), lista);
@@ -161,6 +159,22 @@ public class ArvoreAVL {
 		}
 		return lista;
 	}
+
+	public NoArvore Pesquisar(NoArvore no, String search) {
+		if (no != null) {
+			if (search.compareTo(no.getInfo().getCpf()) < 0) {
+				no =  Pesquisar(no.getEsq(), search);
+			} else {
+				if(search.compareTo(no.getInfo().getCpf()) > 0) {
+					no = Pesquisar(no.getDir(), search);	
+				}
+			}
+		}
+		
+		return no;
+	}
+	
+	
 
 	@Override
 	public String toString() {
