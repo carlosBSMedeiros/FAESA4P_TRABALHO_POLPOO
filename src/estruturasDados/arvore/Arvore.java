@@ -89,15 +89,19 @@ public class Arvore {
 		return vetOrdenado;
 	}
 	
-//	public Arvore arvoreBalanceada(ArrayList<PessoaBanco> vetOrdenado) {
-//		Arvore temp = new Arvore();
-//		this.balancear(vetOrdenado, temp, 0, vetOrdenado.size() - 1);
-//	}
-//	
-//	private void balancear(ArrayList<PessoaBanco> vet, Arvore temp, int inic, int fim) {
-//		int meio;
-//		if (fim >= inic) {
-//			
-//		}
-//	}
+	public Arvore arvoreBalanceada(ArrayList<PessoaBanco> vetOrdenado) {
+		Arvore temp = new Arvore();
+		this.balancear(vetOrdenado, temp, 0, vetOrdenado.size() - 1);
+		return temp;
+	}
+	
+	private void balancear(ArrayList<PessoaBanco> vet, Arvore temp, int inic, int fim) {
+		int meio;
+		if (fim >= inic) {
+			meio = (inic+fim)/2;
+			temp.insere(vet.get(meio));
+			this.balancear(vet, temp, inic, meio - 1);
+			this.balancear(vet, temp, meio + 1, fim);
+		}
+	}
 }
