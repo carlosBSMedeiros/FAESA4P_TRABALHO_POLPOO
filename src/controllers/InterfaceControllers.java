@@ -7,21 +7,21 @@ public interface InterfaceControllers {
 	public default void iniciaApp() {
 		Cronometro.iniciaCronometro();
 		instanciaTabela(500);
-		povoaTabelaPeloTXT();
+		povoaTabelaPeloTXT("");
 		ordenaTabela();
-		geraTXTOrdenado();
-		buscaEGeraTXTSaida();
+		geraTXTOrdenado("");
+		buscaEGeraTXTSaida("");
 		Cronometro.paraCronometro();
 	}
 
 	public void instanciaTabela(int nElem);
 
-	public void povoaTabelaPeloTXT();
+	public void povoaTabelaPeloTXT(String fileName);
 
 	public void ordenaTabela();
 
-	public void geraTXTOrdenado();
+	public void geraTXTOrdenado(String fileName);
 
-	public void buscaEGeraTXTSaida();
+	public void buscaEGeraTXTSaida(String fileName);
 
 }

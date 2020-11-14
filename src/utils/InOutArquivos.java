@@ -55,10 +55,10 @@ public class InOutArquivos {
 		tabela.addItem(pessoa);
 	}
 
-	public static void escritorTXTPessoaBanco(Tabela tabela) {
+	public static void escritorTXTPessoaBanco(Tabela tabela, String fileName) {
 		try {
 
-			String path = "arquivos_out\\HeapAlea500.txt";
+			String path = "arquivos_out\\" + fileName;
 			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
 			StringBuilder strb = new StringBuilder();
 
@@ -82,12 +82,12 @@ public class InOutArquivos {
 
 	}
 
-	public static void leitorTXTBusca(Tabela tabela) {
+	public static void leitorTXTBusca(Tabela tabela, String fileName) {
 		BufferedReader buffRead;
 		BufferedWriter buffWrite;
 		try {
 
-			String path = "arquivos_out\\HeapAlea500.txt";
+			String path = "arquivos_out\\" + fileName;
 			buffWrite = new BufferedWriter(new FileWriter(path));
 
 			buffRead = new BufferedReader(new FileReader("arquivos_in\\Conta.txt"));

@@ -11,9 +11,8 @@ public class Main {
 		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();		
 		hpbb.iniciaApp();
 		
-		//QuickSort
-		//QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
-		//buscaBi.iniciaApp();
+		QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
+		buscaBi.iniciaApp();
 		
 		 
 	}

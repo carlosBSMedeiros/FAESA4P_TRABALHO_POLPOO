@@ -1,12 +1,20 @@
 package services.find;
 
 import estruturasDados.FilaPessoa;
+import estruturasDados.SuperEstrutura;
 import estruturasDados.Tabela;
 
-public class BuscaBinFindService implements TabelaFindService {
+public class BuscaBinFindService implements GenericFindService {
 
 	@Override
-	public FilaPessoa find(Tabela tabela, String cpfBusca) {
+	public FilaPessoa find(SuperEstrutura superEstrutura, String cpfBusca) {
+		
+		if(!(superEstrutura instanceof Tabela)) {
+			return null;
+		}
+		
+		Tabela tabela = (Tabela) superEstrutura;
+		
 		FilaPessoa result =  new FilaPessoa();
 		
 		int meio, esq, dir;

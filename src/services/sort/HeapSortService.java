@@ -4,7 +4,7 @@ import estruturasDados.Tabela;
 import metodos.Compare;
 import models.PessoaBanco;
 
-public class HeapSortService implements TabelaSortService{
+public class HeapSortService implements GenericSortService{
 	
 	public void sort(Tabela tabela) {
 

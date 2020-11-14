@@ -2,7 +2,7 @@ package estruturasDados;
 
 import models.PessoaBanco;
 
-public class Tabela {
+public class Tabela extends SuperEstrutura{
 
 	private PessoaBanco[] vetor;
 	private int nElem;

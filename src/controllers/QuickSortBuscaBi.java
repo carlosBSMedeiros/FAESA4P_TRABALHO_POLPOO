@@ -1,48 +1,41 @@
 package controllers;
 
 import estruturasDados.Tabela;
-import services.sort.HeapSortService;
 import services.sort.QuickSortService;
-import utils.Cronometro;
 import utils.InOutArquivos;
 
-public class QuickSortBuscaBi implements InterfaceControllers {
+public class QuickSortBuscaBi extends SuperController{
 
-	static Tabela tabela;
-
+	@Override
 	public void iniciaApp() {
-		Cronometro.iniciaCronometro();
-		instanciaTabela(500);
-		povoaTabelaPeloTXT();
-		ordenaTabela();
-		geraTXTOrdenado();
-		buscaEGeraTXTSaida();
-		Cronometro.paraCronometro();
+		super.iniciaApp("Quick");
 	}
 
+	@Override
 	public void instanciaTabela(int nElem) {
 		tabela = new Tabela(nElem);
 	}
 
-	public void povoaTabelaPeloTXT() {
-		InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\conta500alea.txt", tabela);
+	@Override
+	public void povoaTabelaPeloTXT(String fileName) {
+		InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, tabela);
 	}
-
+	
+	@Override
 	public void ordenaTabela() {
-
 		Ordenacoes.SortService(tabela, new QuickSortService());
-
 	}
 
-	public void geraTXTOrdenado() {
-		InOutArquivos.escritorTXTPessoaBanco(tabela);
+	@Override
+	public void geraTXTOrdenado(String fileName) {
+		InOutArquivos.escritorTXTPessoaBanco(tabela, fileName);
 	}
 
-	public void buscaEGeraTXTSaida() {
+	@Override
+	public void buscaEGeraTXTSaida(String fileName) {
 
-		InOutArquivos.leitorTXTBusca(tabela);
-		
+		InOutArquivos.leitorTXTBusca(tabela, fileName);
+
 		System.out.println("Fim da execucao");
 	}
-
 }

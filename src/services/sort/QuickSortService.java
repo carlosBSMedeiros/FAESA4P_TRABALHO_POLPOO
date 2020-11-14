@@ -4,7 +4,7 @@ import estruturasDados.Tabela;
 import metodos.Compare;
 import models.PessoaBanco;
 
-public class QuickSortService implements TabelaSortService {
+public class QuickSortService implements GenericSortService {
 
 
 	@Override
