@@ -95,6 +95,9 @@ public class Arvore {
 //	}
 //	
 //	private void balancear(ArrayList<PessoaBanco> vet, Arvore temp, int inic, int fim) {
-//		if ()
+//		int meio;
+//		if (fim >= inic) {
+//			
+//		}
 //	}
 }
