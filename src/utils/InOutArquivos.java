@@ -12,8 +12,9 @@ import estruturasDados.FilaPessoa;
 import estruturasDados.Tabela;
 import models.PessoaBanco;
 import services.find.BuscaBinFindService;
+import estruturasDados.arvore.ArvoreAVL;
 
-//	//cpf;nome;agência;conta;saldo
+//	//cpf;nome;agï¿½ncia;conta;saldo
 
 public class InOutArquivos {
 
@@ -36,6 +37,82 @@ public class InOutArquivos {
 			}
 			buffRead.close();
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void leitorTXTPessoaBanco(String path, ArvoreAVL arvore) {
+		try {
+
+			BufferedReader buffRead = new BufferedReader(new FileReader(path));
+			String linha = "";
+
+			while (true) {
+				if (linha != null) {
+
+					if (linha != null && !linha.isEmpty()) {
+						preencheArvore(linha, arvore);
+					}
+
+				} else
+					break;
+				linha = buffRead.readLine();
+			}
+			buffRead.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void preencheArvore(String linha, ArvoreAVL arvore) {
+		PessoaBanco pessoa = new PessoaBanco();
+
+		String[] aux = linha.split(";");
+
+		pessoa.setCpf(aux[0]);
+		pessoa.setNome(aux[1]);
+		pessoa.setAgencia(aux[2]);
+		pessoa.setConta(aux[3]);
+		pessoa.setSaldo(aux[4]);
+		
+		arvore.insereRaiz(pessoa);
+	}
+	
+	public static void leitorTXTBusca(ArvoreAVL arvore) {
+		BufferedReader buffRead;
+		BufferedWriter buffWrite;
+		try {
+
+			String path = "arquivos_out/HeapAlea500.txt";
+			buffWrite = new BufferedWriter(new FileWriter(path));
+
+			buffRead = new BufferedReader(new FileReader("arquivos_in/Conta.txt"));
+			String linha = "";
+
+			while (true) {
+				if (linha != null) {
+
+					if (!linha.equals("")) {
+						String cpfBusca = linha.split(";")[0];
+						FilaPessoa result = arvore.pesquisaFilaPessoa(cpfBusca);
+
+						escritorTXTBusca(buffWrite, result, cpfBusca);
+					}
+
+				} else
+					break;
+
+				linha = buffRead.readLine();
+			}
+
+			buffRead.close();
+			buffWrite.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA Nï¿½O ENCONTRADO");
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -113,7 +190,7 @@ public class InOutArquivos {
 			buffWrite.close();
 
 		} catch (FileNotFoundException e) {
-			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NÃO ENCONTRADO");
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA Nï¿½O ENCONTRADO");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -151,7 +228,7 @@ public class InOutArquivos {
 		strb.append("CPF ").append(cpfBusca);
 		
 		if(result == null) {
-			strb.append("\nNÃO HÁ NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
+			strb.append("\nNï¿½O Hï¿½ NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
 		} else {
 			
 			Double saldoTotal = 0.0;
@@ -175,11 +252,11 @@ public class InOutArquivos {
 						break;
 		
 					case "010":
-						strb.append(" Conta Poupança: ");
+						strb.append(" Conta Poupanï¿½a: ");
 						break;
 		
 					default:
-						strb.append(" Conta não especificada: ");
+						strb.append(" Conta nï¿½o especificada: ");
 						break;
 	
 				}

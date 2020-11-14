@@ -2,6 +2,7 @@ package estruturasDados.arvore;
 
 import java.util.ArrayList;
 
+import estruturasDados.FilaPessoa;
 import metodos.Compare;
 import models.PessoaBanco;
 
@@ -172,6 +173,44 @@ public class ArvoreAVL {
 		}
 		
 		return no;
+	}
+	
+	public NoArvore Pesquisar(NoArvore no, String search, FilaPessoa fila) {
+		if (no != null) {
+			if (no.getInfo().getCpf().compareTo(search) == 0) {
+				fila.enfileirar(no.getInfo());
+			} else if (search.compareTo(no.getInfo().getCpf()) < 0) {
+				no = Pesquisar(no.getEsq(), search, fila);
+			} else {
+				if (search.compareTo(no.getInfo().getCpf()) > 0) {
+					no = Pesquisar(no.getDir(), search, fila);
+				}
+			}
+		}
+
+		return no;
+	}
+
+	public FilaPessoa pesquisaFilaPessoa(String search) {
+		FilaPessoa fila = new FilaPessoa();
+
+		Pesquisar(this.raiz, search, fila);
+
+		return fila;
+	}
+
+	public ArrayList<PessoaBanco> InOrdem() {
+		ArrayList<PessoaBanco> pesssoasBanco = new ArrayList<PessoaBanco>();
+		return (FazCamInOrdem(this.raiz, pesssoasBanco));
+	}
+
+	private ArrayList<PessoaBanco> FazCamInOrdem(NoArvore no, ArrayList<PessoaBanco> lista) {
+		if (no != null) {
+			lista.add(no.getInfo());
+			lista = FazCamInOrdem(no.getEsq(), lista);
+			lista = FazCamInOrdem(no.getDir(), lista);
+		}
+		return lista;
 	}
 	
 	
