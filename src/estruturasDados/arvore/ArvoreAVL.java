@@ -6,7 +6,7 @@ import estruturasDados.FilaPessoa;
 import metodos.Compare;
 import models.PessoaBanco;
 
-public class ArvoreAVL {
+public class ArvoreAVL extends Arvore {
 
 	private NoArvoreAVL raiz;
 	private boolean h;
