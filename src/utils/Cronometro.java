@@ -13,7 +13,7 @@ public class Cronometro {
 		tempoExec = System.currentTimeMillis() - tempoExec;
 	}
 	
-	public long getTempoExecucao() {
+	public static long getTempoExecucao() {
 		return tempoExec / 1000;
 	}
 }

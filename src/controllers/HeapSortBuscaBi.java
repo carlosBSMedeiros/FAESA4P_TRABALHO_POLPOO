@@ -36,7 +36,6 @@ public class HeapSortBuscaBi extends SuperController{
 
 		InOutArquivos.leitorTXTBusca(tabela, fileName);
 
-		System.out.println("Fim da execucao");
 	}
 
 
