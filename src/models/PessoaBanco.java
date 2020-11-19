@@ -3,7 +3,7 @@ package models;
 public class PessoaBanco {
 
 	
-	//cpf;nome;ag�ncia;conta;saldo
+	//cpf;nome;ag�ncia;conta;saldo
 	
 	private String cpf;
 	private String nome;
@@ -55,12 +55,18 @@ public class PessoaBanco {
 		this.saldo = saldo;
 	}
 	
-	
-	
-	
+	public String getTipoConta() {
+		switch (this.conta.substring(0, 3)) {
 
-
-
-	
+		case "001":
+			return " Conta Comum: ";
+		case "002":
+			return " Conta Especial: ";
+		case "010":
+			return " Conta Poupança: ";
+		default:
+			return " Conta não especificada: ";
+		}
+	}
 	
 }
