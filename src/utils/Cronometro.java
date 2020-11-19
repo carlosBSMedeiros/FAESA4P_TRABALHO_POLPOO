@@ -14,6 +14,6 @@ public class Cronometro {
 	}
 	
 	public static long getTempoExecucao() {
-		return tempoExec / 1000;
+		return tempoExec / 10;
 	}
 }

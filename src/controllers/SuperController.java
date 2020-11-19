@@ -1,5 +1,6 @@
 package controllers;
 
+import estruturasDados.SuperEstrutura;
 import estruturasDados.Tabela;
 import utils.Cronometro;
 
@@ -9,7 +10,7 @@ public class SuperController implements InterfaceControllers{
 	private String[] tiposArqs = new String[] { "alea", "ord", "inv" };
 	private long temposExec;
 	private int contTempos;
-	protected Tabela tabela;
+	protected SuperEstrutura estrutura;
 	
 	public void iniciaApp(String metodoNome) {
 		for (int k = 0; k < tamanhos.length; k++) {
@@ -22,9 +23,9 @@ public class SuperController implements InterfaceControllers{
 				for (int i = 5; i > 0; i--) {
 
 					Cronometro.iniciaCronometro();
-					instanciaTabela(tamanhos[k]);
-					povoaTabelaPeloTXT("conta" + tamanhos[k] + tiposArqs[j] + ".txt");
-					ordenaTabela();
+					instanciaEstrutura(tamanhos[k]);
+					povoaEstruturaPeloTXT("conta" + tamanhos[k] + tiposArqs[j] + ".txt");
+					ordenaEstrutura();
 					geraTXTOrdenado(metodoNome + tamanhos[k] + tiposArqs[j] + ".txt");
 					buscaEGeraTXTSaida(metodoNome + tamanhos[k] + tiposArqs[j]+ "ResultBusca.txt");
 					Cronometro.paraCronometro();
@@ -38,15 +39,15 @@ public class SuperController implements InterfaceControllers{
 		}
 	}
 
-	public void instanciaTabela(int nElem) {
+	public void instanciaEstrutura(int nElem) {
 		
 	}
 
-	public void povoaTabelaPeloTXT(String fileName) {
+	public void povoaEstruturaPeloTXT(String fileName) {
 		
 	}
 
-	public void ordenaTabela() {
+	public void ordenaEstrutura() {
 		
 	}
 	

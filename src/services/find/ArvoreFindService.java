@@ -11,12 +11,10 @@ public class ArvoreFindService implements GenericFindService {
 
 	@Override
 	public FilaPessoa find(SuperEstrutura superEstrutura, String cpfBusca) {
-
-		if(!(superEstrutura instanceof Arvore)) {
-			return null;
-		}
-
-		Arvore arvore = (Arvore) superEstrutura;
+		return find((Arvore) superEstrutura, cpfBusca);
+	}
+	
+	private FilaPessoa find(Arvore arvore, String cpfBusca) {
 
 		FilaPessoa result =  new FilaPessoa();
 		

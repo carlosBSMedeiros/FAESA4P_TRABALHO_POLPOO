@@ -12,29 +12,29 @@ public class QuickSortBuscaBi extends SuperController{
 	}
 
 	@Override
-	public void instanciaTabela(int nElem) {
-		tabela = new Tabela(nElem);
+	public void instanciaEstrutura(int nElem) {
+		estrutura = new Tabela(nElem);
 	}
 
 	@Override
-	public void povoaTabelaPeloTXT(String fileName) {
-		InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, tabela);
+	public void povoaEstruturaPeloTXT(String fileName) {
+		InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (Tabela) estrutura);
 	}
 	
 	@Override
-	public void ordenaTabela() {
-		Ordenacoes.SortService(tabela, new QuickSortService());
+	public void ordenaEstrutura() {
+		Ordenacoes.SortService((Tabela) estrutura, new QuickSortService());
 	}
 
 	@Override
 	public void geraTXTOrdenado(String fileName) {
-		InOutArquivos.escritorTXTPessoaBanco(tabela, fileName);
+		InOutArquivos.escritorTXTPessoaBanco((Tabela) estrutura, fileName);
 	}
 
 	@Override
 	public void buscaEGeraTXTSaida(String fileName) {
 
-		InOutArquivos.leitorTXTBusca(tabela, fileName);
+		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName);
 
 	}
 }
