@@ -1,12 +1,18 @@
 package services.sort;
 
+import estruturasDados.SuperEstrutura;
 import estruturasDados.Tabela;
 import metodos.Compare;
 import models.PessoaBanco;
 
 public class HeapSortService implements GenericSortService{
 	
-	public void sort(Tabela tabela) {
+	@Override
+	public void sort(SuperEstrutura estrutura) {
+		sort((Tabela) estrutura);		
+	}
+	
+	private void sort(Tabela tabela) {
 
 		int dir = tabela.getNElem() - 1;
 		int esq = (dir - 1) / 2;
@@ -45,4 +51,6 @@ public class HeapSortService implements GenericSortService{
 		}
 		tabela.getVetor()[i] = raiz;
 	}
+
+	
 }

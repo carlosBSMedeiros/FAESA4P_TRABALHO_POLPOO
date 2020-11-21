@@ -8,12 +8,10 @@ public class BuscaBinFindService implements GenericFindService {
 
 	@Override
 	public FilaPessoa find(SuperEstrutura superEstrutura, String cpfBusca) {
-		
-		if(!(superEstrutura instanceof Tabela)) {
-			return null;
-		}
-		
-		Tabela tabela = (Tabela) superEstrutura;
+		return find((Tabela) superEstrutura, cpfBusca);
+	}
+	
+	private FilaPessoa find(Tabela tabela, String cpfBusca) {
 		
 		FilaPessoa result =  new FilaPessoa();
 		

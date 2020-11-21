@@ -1,14 +1,19 @@
 package services.sort;
 
+import estruturasDados.SuperEstrutura;
 import estruturasDados.Tabela;
 import metodos.Compare;
 import models.PessoaBanco;
 
 public class QuickSortService implements GenericSortService {
 
-
 	@Override
-	public void sort(Tabela tabela) {
+	public void sort(SuperEstrutura estrutura) {
+		sort((Tabela) estrutura);		
+	}
+	
+	private void sort(Tabela tabela) {
+		
 		quickSort(tabela.getVetor(), 0, tabela.getNElem() - 1);
 	}
 

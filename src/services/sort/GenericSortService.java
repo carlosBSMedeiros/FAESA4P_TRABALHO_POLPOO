@@ -1,9 +1,9 @@
 package services.sort;
 
-import estruturasDados.Tabela;
+import estruturasDados.SuperEstrutura;
 
 public interface GenericSortService {
 
-	public void sort(Tabela tabela);
+	public void sort(SuperEstrutura estrutura);
 	
 }

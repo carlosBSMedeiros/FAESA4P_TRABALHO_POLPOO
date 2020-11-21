@@ -6,19 +6,19 @@ public interface InterfaceControllers {
 
 	public default void iniciaApp() {
 		Cronometro.iniciaCronometro();
-		instanciaTabela(500);
-		povoaTabelaPeloTXT("");
-		ordenaTabela();
+		instanciaEstrutura(500);
+		povoaEstruturaPeloTXT("");
+		ordenaEstrutura();
 		geraTXTOrdenado("");
 		buscaEGeraTXTSaida("");
 		Cronometro.paraCronometro();
 	}
 
-	public void instanciaTabela(int nElem);
+	public void instanciaEstrutura(int nElem);
 
-	public void povoaTabelaPeloTXT(String fileName);
+	public void povoaEstruturaPeloTXT(String fileName);
 
-	public void ordenaTabela();
+	public void ordenaEstrutura();
 
 	public void geraTXTOrdenado(String fileName);
 

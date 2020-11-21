@@ -66,6 +66,20 @@ public class InOutArquivos {
 		}
 	}
 	
+	private static void preencheTabela(String linha, Tabela tabela) {
+		PessoaBanco pessoa = new PessoaBanco();
+
+		String[] aux = linha.split(";");
+
+		pessoa.setCpf(aux[0]);
+		pessoa.setNome(aux[1]);
+		pessoa.setAgencia(aux[2]);
+		pessoa.setConta(aux[3]);
+		pessoa.setSaldo(aux[4]);
+
+		tabela.addItem(pessoa);
+	}
+	
 	private static void preencheArvore(String linha, ArvoreAVL arvore) {
 		PessoaBanco pessoa = new PessoaBanco();
 
@@ -118,19 +132,7 @@ public class InOutArquivos {
 		}
 	}
 
-	private static void preencheTabela(String linha, Tabela tabela) {
-		PessoaBanco pessoa = new PessoaBanco();
-
-		String[] aux = linha.split(";");
-
-		pessoa.setCpf(aux[0]);
-		pessoa.setNome(aux[1]);
-		pessoa.setAgencia(aux[2]);
-		pessoa.setConta(aux[3]);
-		pessoa.setSaldo(aux[4]);
-
-		tabela.addItem(pessoa);
-	}
+	
 
 	public static void escritorTXTPessoaBanco(Tabela tabela, String fileName) {
 		try {

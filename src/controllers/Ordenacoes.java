@@ -1,11 +1,11 @@
 package controllers;
 
-import estruturasDados.Tabela;
+import estruturasDados.SuperEstrutura;
 import services.sort.GenericSortService;
 
 public class Ordenacoes {
 
-	public static void SortService(Tabela tabela, GenericSortService tabelaSortService) {
-		 tabelaSortService.sort(tabela);
+	public static void SortService(SuperEstrutura estrutura, GenericSortService tabelaSortService) {
+		 tabelaSortService.sort(estrutura);
 	}
 }
