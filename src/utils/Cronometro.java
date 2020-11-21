@@ -2,18 +2,19 @@ package utils;
 
 public class Cronometro {
 
-	static long tempoExec;
+	private long tempoExec;
 	
 	
-	public static void iniciaCronometro() { 
-		tempoExec = System.currentTimeMillis();
+	public void iniciaCronometro() { 
+		tempoExec = System.nanoTime();
 	}
 	
-	public static void paraCronometro() {
-		tempoExec = System.currentTimeMillis() - tempoExec;
+	public void paraCronometro() {
+		tempoExec = System.nanoTime() - tempoExec;
 	}
 	
-	public static long getTempoExecucao() {
-		return tempoExec / 10;
+	public Long getTempoExecucao() {
+		tempoExec /= 1_000_000_00;
+		return tempoExec;
 	}
 }

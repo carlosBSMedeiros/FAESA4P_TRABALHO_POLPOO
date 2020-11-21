@@ -1,17 +1,15 @@
 package controllers;
 
-import utils.Cronometro;
-
 public interface InterfaceControllers {
 
 	public default void iniciaApp() {
-		Cronometro.iniciaCronometro();
+//		Cronometro.iniciaCronometro();
 		instanciaEstrutura(500);
 		povoaEstruturaPeloTXT("");
 		ordenaEstrutura();
 		geraTXTOrdenado("");
 		buscaEGeraTXTSaida("");
-		Cronometro.paraCronometro();
+//		Cronometro.paraCronometro();
 	}
 
 	public void instanciaEstrutura(int nElem);

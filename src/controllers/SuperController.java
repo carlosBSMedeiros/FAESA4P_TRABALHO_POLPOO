@@ -1,39 +1,45 @@
 package controllers;
 
+import java.util.concurrent.TimeUnit;
+
 import estruturasDados.SuperEstrutura;
-import estruturasDados.Tabela;
 import utils.Cronometro;
 
 public class SuperController implements InterfaceControllers{
 	
 	private Integer[] tamanhos = new Integer[] { 500, 1000, 5000, 10000, 50000 };
 	private String[] tiposArqs = new String[] { "alea", "ord", "inv" };
-	private long temposExec;
+	private Long temposExec;
 	private int contTempos;
 	protected SuperEstrutura estrutura;
+	
+	private Cronometro cronometro = new Cronometro();
 	
 	public void iniciaApp(String metodoNome) {
 		for (int k = 0; k < tamanhos.length; k++) {
 
 			for (int j = 0; j < tiposArqs.length; j++) {
 
-				temposExec = 0;
+				temposExec = (long) 0;
 				contTempos = 0;
 				
 				for (int i = 5; i > 0; i--) {
 
-					Cronometro.iniciaCronometro();
+					cronometro.iniciaCronometro();
 					instanciaEstrutura(tamanhos[k]);
 					povoaEstruturaPeloTXT("conta" + tamanhos[k] + tiposArqs[j] + ".txt");
 					ordenaEstrutura();
 					geraTXTOrdenado(metodoNome + tamanhos[k] + tiposArqs[j] + ".txt");
 					buscaEGeraTXTSaida(metodoNome + tamanhos[k] + tiposArqs[j]+ "ResultBusca.txt");
-					Cronometro.paraCronometro();
-					somaTempoExecucao(Cronometro.getTempoExecucao());
+					cronometro.paraCronometro();
+					somaTempoExecucao(cronometro.getTempoExecucao());
 				}
 				
+//				System.out.printf("Média de tempo de execução do método " + metodoNome + tamanhos[k] + tiposArqs[j]
+//						+ ": %.6f  segundos!\r", calculaMediaTempoExecucao());
+				
 				System.out.println("Média de tempo de execução do método " + metodoNome + tamanhos[k] + tiposArqs[j]
-						+ ": " + calculaMediaTempoExecucao() + " segundos!\r");
+						+ ": " + calculaMediaTempoExecucao() +" segundos!\r");
 				
 			}
 		}
@@ -59,14 +65,16 @@ public class SuperController implements InterfaceControllers{
 		
 	}
 	
-	private void somaTempoExecucao(long tempoExec) {
+	private void somaTempoExecucao(Long tempoExec) {
 		this.temposExec += tempoExec;
 		contTempos++;
 	}
 	
 	private long calculaMediaTempoExecucao() {
-		long result = this.temposExec / contTempos;
-		return result;
+		this.temposExec = this.temposExec / contTempos;
+		
+		
+		return this.temposExec;
 	}
 
 }
