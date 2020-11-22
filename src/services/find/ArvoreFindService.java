@@ -18,64 +18,27 @@ public class ArvoreFindService implements GenericFindService {
 	
 	private FilaPessoa find(Arvore arvore, String cpfBusca) {
 
-		FilaPessoa result =  new FilaPessoa();
+		FilaPessoa fila =  new FilaPessoa();
 		
-		NoArvore no = this.find(cpfBusca, arvore.getRaiz());
+		this.find(cpfBusca, arvore.getRaiz(), fila);
 		
-		if (no != null) {
-			return result;
-		} else {
-			return null;
-		}
-		
+		return fila;		
 	}
 	
-	private NoArvore find(String cpfBusca, NoArvore no) {
-		NoArvore noArvore = no;
-		
-		if (noArvore != null) {
-			if (cpfBusca.compareTo(no.getInfo().getCpf()) < 0) {
-				noArvore = this.find(cpfBusca, noArvore.getEsq());
+	private NoArvore find(String cpfBusca, NoArvore no, FilaPessoa fila) {
+		if (no != null) {
+			if (no.getInfo().getCpf().compareTo(cpfBusca) == 0) {
+				fila.enfileirar(no.getInfo());
+			} else if (cpfBusca.compareTo(no.getInfo().getCpf()) < 0) {
+				no = find(cpfBusca, no.getEsq(), fila);
 			} else {
 				if (cpfBusca.compareTo(no.getInfo().getCpf()) > 0) {
-					noArvore = this.find(cpfBusca, noArvore.getDir());
+					no = find(cpfBusca, no.getDir(), fila);
 				}
 			}
 		}
-		return noArvore;
-	}
-	
-	public ArrayList<PessoaBanco> camCentral(ArrayList<PessoaBanco> vetOrdenado, SuperEstrutura superEstrutura) {
-		
-		Arvore arvore = (Arvore) superEstrutura;
-		
-		return (this.fazCamCentral(arvore.getRaiz(), vetOrdenado));
-		
-	}
-	
-	private ArrayList<PessoaBanco> fazCamCentral(NoArvore noArvore, ArrayList<PessoaBanco> vetOrdenado) {
-		if (noArvore != null) {
-			vetOrdenado = this.fazCamCentral(noArvore.getEsq(), vetOrdenado);
-			vetOrdenado.add(noArvore.getInfo());
-			vetOrdenado = this.fazCamCentral(noArvore.getDir(), vetOrdenado);
-		}
-		return vetOrdenado;
-	}
-	
-	public Arvore arvoreBalanceada(ArrayList<PessoaBanco> vetOrdenado) {
-		Arvore temp = new Arvore();
-		this.balancear(vetOrdenado, temp, 0, vetOrdenado.size() - 1);
-		return temp;
-	}
-	
-	private void balancear(ArrayList<PessoaBanco> vet, Arvore temp, int inic, int fim) {
-		int meio;
-		if (fim >= inic) {
-			meio = (inic+fim)/2;
-//			temp.insere(vet.get(meio));
-			this.balancear(vet, temp, inic, meio - 1);
-			this.balancear(vet, temp, meio + 1, fim);
-		}
+
+		return no;
 	}
 
 }
