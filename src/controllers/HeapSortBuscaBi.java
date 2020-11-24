@@ -10,6 +10,11 @@ public class HeapSortBuscaBi extends SuperController{
 	public void iniciaApp() {
 		super.iniciaApp("Heap");
 	}
+	
+	@Override
+	public void iniciaApp(String tamanho) {
+		super.iniciaApp("Heap",tamanho);
+	}
 
 	@Override
 	public void instanciaTabela(int nElem) {

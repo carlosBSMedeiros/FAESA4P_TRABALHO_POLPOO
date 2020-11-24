@@ -2,6 +2,7 @@ package controllers;
 
 import estruturasDados.Tabela;
 import utils.Cronometro;
+import utils.InOut;
 
 public class SuperController implements InterfaceControllers{
 	
@@ -27,6 +28,27 @@ public class SuperController implements InterfaceControllers{
 				}
 			}
 		}
+		
+	}
+	
+	public void iniciaApp(String metodoNome, String tamanho) {
+
+		for (int j = 0; j < tiposArqs.length; j++) {
+
+			for (int i = 5; i > 0; i--) {
+
+				Cronometro.iniciaCronometro();
+				instanciaTabela(Integer.parseInt(tamanho));
+				povoaTabelaPeloTXT("conta" + tamanho + tiposArqs[j] + ".txt");
+				ordenaTabela();
+				geraTXTOrdenado(metodoNome + tamanho + tiposArqs[j] + ".txt");
+				buscaEGeraTXTSaida(metodoNome + tamanho + tiposArqs[j] + "ResultBusca.txt");
+				Cronometro.paraCronometro();
+
+			}
+		}
+		
+
 	}
 
 	public void instanciaTabela(int nElem) {

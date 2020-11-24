@@ -2,6 +2,7 @@ package controllers;
 
 import estruturasDados.Tabela;
 import services.sort.QuickSortService;
+import utils.Cronometro;
 import utils.InOutArquivos;
 
 public class QuickSortBuscaBi extends SuperController{
@@ -10,6 +11,12 @@ public class QuickSortBuscaBi extends SuperController{
 	public void iniciaApp() {
 		super.iniciaApp("Quick");
 	}
+	
+	@Override
+	public void iniciaApp(String tamanho) {
+		super.iniciaApp("Quick",tamanho);
+	}
+
 
 	@Override
 	public void instanciaTabela(int nElem) {
@@ -37,5 +44,6 @@ public class QuickSortBuscaBi extends SuperController{
 		InOutArquivos.leitorTXTBusca(tabela, fileName);
 
 		System.out.println("Fim da execucao");
+		System.out.println("tempo de execução-> "+Cronometro.getTempoExecucao());
 	}
 }
