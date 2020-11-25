@@ -110,9 +110,9 @@ public class InOutArquivos {
 
 					if (!linha.equals("")) {
 						String cpfBusca = linha.split(";")[0];
-						FilaPessoa result = arvore.pesquisaFilaPessoa(cpfBusca);
+//						FilaPessoa result = arvore.pesquisaFilaPessoa(cpfBusca);
 
-						escritorTXTBusca(buffWrite, result, cpfBusca);
+//						escritorTXTBusca(buffWrite, result, cpfBusca);
 					}
 
 				} else
@@ -125,7 +125,7 @@ public class InOutArquivos {
 			buffWrite.close();
 
 		} catch (FileNotFoundException e) {
-			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA N�O ENCONTRADO");
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NÃO ENCONTRADO");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -192,7 +192,7 @@ public class InOutArquivos {
 			buffWrite.close();
 
 		} catch (FileNotFoundException e) {
-			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA N�O ENCONTRADO");
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NãO ENCONTRADO");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -230,7 +230,7 @@ public class InOutArquivos {
 		strb.append("CPF ").append(cpfBusca);
 		
 		if(result == null) {
-			strb.append("\nN�O H� NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
+			strb.append("\n NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
 		} else {
 			
 			Double saldoTotal = 0.0;
@@ -254,11 +254,11 @@ public class InOutArquivos {
 						break;
 		
 					case "010":
-						strb.append(" Conta Poupan�a: ");
+						strb.append(" Conta Poupança: ");
 						break;
 		
 					default:
-						strb.append(" Conta n�o especificada: ");
+						strb.append(" Conta não especificada: ");
 						break;
 	
 				}

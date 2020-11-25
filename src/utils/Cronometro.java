@@ -1,19 +1,18 @@
 package utils;
 
 public class Cronometro {
+	static double inicio;
+	static double tempoExec;
 
-	static long tempoExec;
-	
-	
-	public static void iniciaCronometro() { 
-		tempoExec = System.currentTimeMillis();
+	public static void iniciaCronometro() {
+		inicio = System.currentTimeMillis();
 	}
-	
+
 	public static void paraCronometro() {
-		tempoExec = System.currentTimeMillis() - tempoExec;
+		tempoExec = (System.currentTimeMillis()) - inicio;
 	}
-	
-	public static long getTempoExecucao() {
-		return tempoExec / 10;
+
+	public static double getTempoExecucao() {
+		return tempoExec;
 	}
 }

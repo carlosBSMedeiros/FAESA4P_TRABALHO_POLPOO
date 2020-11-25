@@ -3,6 +3,7 @@ package controllers;
 import estruturasDados.SuperEstrutura;
 import estruturasDados.Tabela;
 import utils.Cronometro;
+import utils.InOut;
 
 public class SuperController implements InterfaceControllers{
 	
@@ -32,11 +33,32 @@ public class SuperController implements InterfaceControllers{
 					somaTempoExecucao(Cronometro.getTempoExecucao());
 				}
 				
-				System.out.println("Média de tempo de execução do método " + metodoNome + tamanhos[k] + tiposArqs[j]
+				System.out.println("Mï¿½dia de tempo de execuï¿½ï¿½o do mï¿½todo " + metodoNome + tamanhos[k] + tiposArqs[j]
 						+ ": " + calculaMediaTempoExecucao() + " segundos!\r");
 				
 			}
 		}
+		
+	}
+	
+	public void iniciaApp(String metodoNome, String tamanho) {
+
+		for (int j = 0; j < tiposArqs.length; j++) {
+
+			for (int i = 5; i > 0; i--) {
+
+				Cronometro.iniciaCronometro();
+				instanciaEstrutura(Integer.parseInt(tamanho));
+				povoaEstruturaPeloTXT("conta" + tamanho + tiposArqs[j] + ".txt");
+				ordenaEstrutura();
+				geraTXTOrdenado(metodoNome + tamanho + tiposArqs[j] + ".txt");
+				buscaEGeraTXTSaida(metodoNome + tamanho + tiposArqs[j] + "ResultBusca.txt");
+				Cronometro.paraCronometro();
+
+			}
+		}
+		
+
 	}
 
 	public void instanciaEstrutura(int nElem) {
@@ -59,7 +81,7 @@ public class SuperController implements InterfaceControllers{
 		
 	}
 	
-	private void somaTempoExecucao(long tempoExec) {
+	private void somaTempoExecucao(double tempoExec) {
 		this.temposExec += tempoExec;
 		contTempos++;
 	}
