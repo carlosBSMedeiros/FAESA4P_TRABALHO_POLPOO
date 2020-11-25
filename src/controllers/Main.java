@@ -52,7 +52,7 @@ public class Main {
 			
 			break;
 		default:
-			InOut.outputError("Op��o n�o disponivel");
+			InOut.outputError("Opção não disponivel");
 			break;
 		}
 		return result;

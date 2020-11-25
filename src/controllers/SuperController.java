@@ -33,7 +33,7 @@ public class SuperController implements InterfaceControllers{
 					somaTempoExecucao(Cronometro.getTempoExecucao());
 				}
 				
-				System.out.println("M�dia de tempo de execu��o do m�todo " + metodoNome + tamanhos[k] + tiposArqs[j]
+				System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j]
 						+ ": " + calculaMediaTempoExecucao() + " segundos!\r");
 				
 			}
