@@ -1,16 +1,13 @@
 package services.sort;
 
 import java.util.ArrayList;
-import estruturasDados.FilaPessoa;
+
 import estruturasDados.SuperEstrutura;
-import estruturasDados.Tabela;
 import estruturasDados.arvore.Arvore;
 import estruturasDados.arvore.ArvoreAVL;
 import estruturasDados.arvore.NoArvore;
 import estruturasDados.arvore.NoArvoreAVL;
-import metodos.Compare;
 import models.PessoaBanco;
-import services.find.ArvoreFindService;
 
 public class ArvoreSortService implements GenericSortService {
 

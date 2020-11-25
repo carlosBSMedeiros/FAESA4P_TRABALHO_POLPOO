@@ -1,9 +1,7 @@
 package controllers;
 
 import estruturasDados.SuperEstrutura;
-import estruturasDados.Tabela;
 import utils.Cronometro;
-import utils.InOut;
 
 public class SuperController implements InterfaceControllers{
 	

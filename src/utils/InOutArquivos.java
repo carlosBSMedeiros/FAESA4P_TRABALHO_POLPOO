@@ -10,9 +10,9 @@ import java.io.IOException;
 import controllers.Buscas;
 import estruturasDados.FilaPessoa;
 import estruturasDados.Tabela;
+import estruturasDados.arvore.ArvoreAVL;
 import models.PessoaBanco;
 import services.find.BuscaBinFindService;
-import estruturasDados.arvore.ArvoreAVL;
 
 //	//cpf;nome;ag�ncia;conta;saldo
 
