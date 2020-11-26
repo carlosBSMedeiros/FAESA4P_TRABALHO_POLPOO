@@ -35,7 +35,7 @@ public class SuperController implements InterfaceControllers{
 				
 				System.out.println("M�dia de tempo de execu��o do m�todo " + metodoNome + tamanhos[k] + tiposArqs[j]
 						+ ": " + calculaMediaTempoExecucao() + " segundos!\r");
-				
+
 			}
 		}
 		
@@ -57,7 +57,7 @@ public class SuperController implements InterfaceControllers{
 
 			}
 		}
-		
+
 
 	}
 
