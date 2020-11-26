@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import controllers.Buscas;
 import estruturasDados.FilaPessoa;
 import estruturasDados.Tabela;
+import estruturasDados.arvore.ArvoreAVL;
 import models.PessoaBanco;
 import services.find.ArvoreFindService;
 import services.find.BuscaBinFindService;
 import estruturasDados.arvore.ArvoreABB;
-import estruturasDados.arvore.ArvoreAVL;
 
 //	//cpf;nome;ag�ncia;conta;saldo
 
@@ -115,7 +115,7 @@ public class InOutArquivos {
 						String cpfBusca = linha.split(";")[0];
 						FilaPessoa result = Buscas.FindService(arvore, cpfBusca, new ArvoreFindService());
 
-						escritorTXTBusca(buffWrite, result, cpfBusca);
+//						escritorTXTBusca(buffWrite, result, cpfBusca);
 					}
 
 				} else
@@ -128,7 +128,7 @@ public class InOutArquivos {
 			buffWrite.close();
 
 		} catch (FileNotFoundException e) {
-			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA N�O ENCONTRADO");
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NÃO ENCONTRADO");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -287,7 +287,7 @@ public class InOutArquivos {
 			buffWrite.close();
 
 		} catch (FileNotFoundException e) {
-			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA N�O ENCONTRADO");
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NãO ENCONTRADO");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -325,7 +325,7 @@ public class InOutArquivos {
 		strb.append("CPF ").append(cpfBusca);
 
 		if (result == null) {
-			strb.append("\nNÃO HÁ NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
+			strb.append("\n NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
 		} else {
 
 			Double saldoTotal = 0.0;
@@ -337,9 +337,7 @@ public class InOutArquivos {
 				PessoaBanco pessoaBanco = result.desenfileirar();
 
 				strb.append("Ag: ").append(pessoaBanco.getAgencia());
-
 				strb.append(pessoaBanco.getTipoConta());
-
 				strb.append(pessoaBanco.getConta()).append(" Saldo: R$ ").append(pessoaBanco.getSaldo() + "\n");
 				saldoTotal += Double.parseDouble(pessoaBanco.getSaldo());
 				// Ag: 1234 Conta Comum: 00112345 Saldo: R$ 2300.00

@@ -1,7 +1,6 @@
 package estruturasDados.arvore;
 
 import java.util.ArrayList;
-
 import estruturasDados.FilaPessoa;
 import estruturasDados.SuperEstrutura;
 import metodos.Compare;

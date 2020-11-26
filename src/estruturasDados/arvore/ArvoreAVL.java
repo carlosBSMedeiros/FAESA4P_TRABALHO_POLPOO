@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 import estruturasDados.FilaPessoa;
 import estruturasDados.SuperEstrutura;
-import metodos.Compare;
 import models.PessoaBanco;
 import services.find.ArvoreFindService;
+import services.sort.ArvoreSortService;
+import metodos.Compare;
 
 public class ArvoreAVL extends SuperEstrutura {
 

@@ -1,14 +1,10 @@
 package services.find;
 
-import java.util.ArrayList;
-
 import estruturasDados.FilaPessoa;
 import estruturasDados.SuperEstrutura;
 import estruturasDados.arvore.ArvoreABB;
 import estruturasDados.arvore.ArvoreAVL;
 import estruturasDados.arvore.NoArvore;
-import metodos.Compare;
-import models.PessoaBanco;
 
 public class ArvoreFindService implements GenericFindService {
 
