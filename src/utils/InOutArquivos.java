@@ -6,12 +6,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import controllers.Buscas;
 import estruturasDados.FilaPessoa;
 import estruturasDados.Tabela;
 import models.PessoaBanco;
+import services.find.ArvoreFindService;
 import services.find.BuscaBinFindService;
+import estruturasDados.arvore.ArvoreABB;
 import estruturasDados.arvore.ArvoreAVL;
 
 //	//cpf;nome;ag�ncia;conta;saldo
@@ -41,7 +44,7 @@ public class InOutArquivos {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void leitorTXTPessoaBanco(String path, ArvoreAVL arvore) {
 		try {
 
@@ -65,7 +68,7 @@ public class InOutArquivos {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void preencheTabela(String linha, Tabela tabela) {
 		PessoaBanco pessoa = new PessoaBanco();
 
@@ -79,7 +82,7 @@ public class InOutArquivos {
 
 		tabela.addItem(pessoa);
 	}
-	
+
 	private static void preencheArvore(String linha, ArvoreAVL arvore) {
 		PessoaBanco pessoa = new PessoaBanco();
 
@@ -90,16 +93,16 @@ public class InOutArquivos {
 		pessoa.setAgencia(aux[2]);
 		pessoa.setConta(aux[3]);
 		pessoa.setSaldo(aux[4]);
-		
+
 		arvore.insereRaiz(pessoa);
 	}
-	
-	public static void leitorTXTBusca(ArvoreAVL arvore) {
+
+	public static void leitorTXTBusca(ArvoreAVL arvore, String fileName) {
 		BufferedReader buffRead;
 		BufferedWriter buffWrite;
 		try {
 
-			String path = "arquivos_out/HeapAlea500.txt";
+			String path = "arquivos_out/" + fileName;
 			buffWrite = new BufferedWriter(new FileWriter(path));
 
 			buffRead = new BufferedReader(new FileReader("arquivos_in/Conta.txt"));
@@ -110,7 +113,7 @@ public class InOutArquivos {
 
 					if (!linha.equals("")) {
 						String cpfBusca = linha.split(";")[0];
-						FilaPessoa result = arvore.pesquisaFilaPessoa(cpfBusca);
+						FilaPessoa result = Buscas.FindService(arvore, cpfBusca, new ArvoreFindService());
 
 						escritorTXTBusca(buffWrite, result, cpfBusca);
 					}
@@ -132,12 +135,48 @@ public class InOutArquivos {
 		}
 	}
 
-	
+	public static void leitorTXTBusca(ArvoreABB arvore, String fileName) {
+		BufferedReader buffRead;
+		BufferedWriter buffWrite;
+		try {
+
+			String path = "arquivos_out/" + fileName;
+			buffWrite = new BufferedWriter(new FileWriter(path));
+
+			buffRead = new BufferedReader(new FileReader("arquivos_in/Conta.txt"));
+			String linha = "";
+
+			while (true) {
+				if (linha != null) {
+
+					if (!linha.equals("")) {
+						String cpfBusca = linha.split(";")[0];
+						FilaPessoa result = Buscas.FindService(arvore, cpfBusca, new ArvoreFindService());
+
+						escritorTXTBusca(buffWrite, result, cpfBusca);
+					}
+
+				} else
+					break;
+
+				linha = buffRead.readLine();
+			}
+
+			buffRead.close();
+			buffWrite.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA N�O ENCONTRADO");
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void escritorTXTPessoaBanco(Tabela tabela, String fileName) {
 		try {
 
-			String path = "arquivos_out\\" + fileName;
+			String path = "arquivos_out/" + fileName;
 			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
 			StringBuilder strb = new StringBuilder();
 
@@ -161,15 +200,71 @@ public class InOutArquivos {
 
 	}
 
+	public static void escritorTXTPessoaBanco(ArvoreAVL arvore, String fileName) {
+		try {
+
+			String path = "arquivos_out/" + fileName;
+			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+			StringBuilder strb = new StringBuilder();
+			ArrayList<PessoaBanco> pesssoasBanco = arvore.InOrdem();
+
+			for (PessoaBanco pessoaBanco : pesssoasBanco) {
+				strb.delete(0, strb.length());
+
+				PessoaBanco aux = pessoaBanco;
+
+				strb.append(aux.getCpf()).append(";").append(aux.getNome()).append(";").append(aux.getAgencia())
+						.append(";").append(aux.getConta()).append(";").append(aux.getSaldo());
+
+				buffWrite.append(strb.toString() + "\n");
+
+			}
+
+			buffWrite.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void escritorTXTPessoaBanco(ArvoreABB arvore, String fileName) {
+		try {
+
+			String path = "arquivos_out/" + fileName;
+			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+			StringBuilder strb = new StringBuilder();
+			ArrayList<PessoaBanco> pesssoasBanco = arvore.InOrdem();
+
+			for (PessoaBanco pessoaBanco : pesssoasBanco) {
+				strb.delete(0, strb.length());
+
+				PessoaBanco aux = pessoaBanco;
+
+				strb.append(aux.getCpf()).append(";").append(aux.getNome()).append(";").append(aux.getAgencia())
+						.append(";").append(aux.getConta()).append(";").append(aux.getSaldo());
+
+				buffWrite.append(strb.toString() + "\n");
+
+			}
+
+			buffWrite.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public static void leitorTXTBusca(Tabela tabela, String fileName) {
 		BufferedReader buffRead;
 		BufferedWriter buffWrite;
 		try {
 
-			String path = "arquivos_out\\" + fileName;
+			String path = "arquivos_out/" + fileName;
 			buffWrite = new BufferedWriter(new FileWriter(path));
 
-			buffRead = new BufferedReader(new FileReader("arquivos_in\\Conta.txt"));
+			buffRead = new BufferedReader(new FileReader("arquivos_in/Conta.txt"));
 			String linha = "";
 
 			while (true) {
@@ -178,7 +273,7 @@ public class InOutArquivos {
 					if (!linha.equals("")) {
 						String cpfBusca = linha.split(";")[0];
 						FilaPessoa result = Buscas.FindService(tabela, cpfBusca, new BuscaBinFindService());
-						
+
 						escritorTXTBusca(buffWrite, result, cpfBusca);
 					}
 
@@ -226,52 +321,34 @@ public class InOutArquivos {
 
 	private static String montaMsgDoTXTSaida(FilaPessoa result, String cpfBusca) {
 		StringBuilder strb = new StringBuilder();
-		
+
 		strb.append("CPF ").append(cpfBusca);
-		
-		if(result == null) {
-			strb.append("\nN�O H� NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
+
+		if (result == null) {
+			strb.append("\nNÃO HÁ NENHUM REGISTRO COM O CPF ").append(cpfBusca).append("\n");
 		} else {
-			
+
 			Double saldoTotal = 0.0;
 
 			strb.append("   NOME:").append(result.getPrimeiro().getNome()).append("\n");
 
-			while(result.getSize() > 0) {
-			
+			while (result.getSize() > 0) {
+
 				PessoaBanco pessoaBanco = result.desenfileirar();
-				
+
 				strb.append("Ag: ").append(pessoaBanco.getAgencia());
-				
-				switch(pessoaBanco.getConta().substring(0, 3)) {
-				
-					case "001":
-						strb.append(" Conta Comum: ");
-						break;
-					
-					case "002":
-						strb.append(" Conta Especial: ");
-						break;
-		
-					case "010":
-						strb.append(" Conta Poupan�a: ");
-						break;
-		
-					default:
-						strb.append(" Conta n�o especificada: ");
-						break;
-	
-				}
-				
+
+				strb.append(pessoaBanco.getTipoConta());
+
 				strb.append(pessoaBanco.getConta()).append(" Saldo: R$ ").append(pessoaBanco.getSaldo() + "\n");
 				saldoTotal += Double.parseDouble(pessoaBanco.getSaldo());
-			//Ag: 1234 Conta Comum: 00112345 Saldo: R$ 2300.00
+				// Ag: 1234 Conta Comum: 00112345 Saldo: R$ 2300.00
 			}
-			
+
 			strb.append("Saldo Total: R$").append(saldoTotal).append("\n");
-			
+
 		}
-		
+
 		return strb.toString();
 	}
 

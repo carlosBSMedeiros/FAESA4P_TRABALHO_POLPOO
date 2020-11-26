@@ -1,20 +1,15 @@
 package controllers;
 
 import estruturasDados.Tabela;
+import estruturasDados.arvore.ArvoreAVL;
 
 public class Main {
 
-	static Tabela tabela;
 
 	public static void main(String[] args) {
 
-		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();		
-		hpbb.iniciaApp();
+		ArvoreAVLController arvoreAVL = new ArvoreAVLController();		
+		arvoreAVL.iniciaApp();
 		
-//		QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
-//		buscaBi.iniciaApp();
-		
-		 
 	}
-
 }

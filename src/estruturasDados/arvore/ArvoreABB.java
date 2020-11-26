@@ -1,4 +1,5 @@
 package estruturasDados.arvore;
+
 import java.util.ArrayList;
 
 import estruturasDados.FilaPessoa;
@@ -7,18 +8,18 @@ import metodos.Compare;
 import models.PessoaBanco;
 import services.find.ArvoreFindService;
 
-public class Arvore extends SuperEstrutura {
-	
+public class ArvoreABB extends SuperEstrutura {
+
 	private NoArvore raiz;
-	
-	public Arvore() {
-		
+
+	public ArvoreABB() {
+
 	}
 
-	public Arvore(NoArvore raiz) {
+	public ArvoreABB(NoArvore raiz) {
 		this.raiz = raiz;
 	}
-	
+
 	public NoArvore getRaiz() {
 		return raiz;
 	}
@@ -26,8 +27,8 @@ public class Arvore extends SuperEstrutura {
 	public void setRaiz(NoArvore raiz) {
 		this.raiz = raiz;
 	}
-	
-	public boolean insere(PessoaBanco pessoa, Arvore arvore) {
+
+	public boolean insere(PessoaBanco pessoa, ArvoreABB arvore) {
 		FilaPessoa existe;
 
 		ArvoreFindService service = new ArvoreFindService();
@@ -55,5 +56,19 @@ public class Arvore extends SuperEstrutura {
 			}
 		}
 	}
-		
+
+	public ArrayList<PessoaBanco> InOrdem() {
+		ArrayList<PessoaBanco> lista = new ArrayList<PessoaBanco>();
+		return (this.FazCamInOrdem(this.raiz, lista));
+	}
+
+	private ArrayList<PessoaBanco> FazCamInOrdem(NoArvore noArvore, ArrayList<PessoaBanco> lista) {
+		if (noArvore != null) {
+			lista = this.FazCamInOrdem(noArvore.getEsq(), lista);
+			lista.add(noArvore.getInfo());
+			lista = this.FazCamInOrdem(noArvore.getDir(), lista);
+		}
+		return lista;
+	}
+
 }

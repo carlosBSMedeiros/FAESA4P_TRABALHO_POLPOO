@@ -1,6 +1,5 @@
 package estruturasDados.arvore;
 
-import estruturasDados.Item;
 import models.PessoaBanco;
 
 public class NoArvoreAVL extends NoArvore {
