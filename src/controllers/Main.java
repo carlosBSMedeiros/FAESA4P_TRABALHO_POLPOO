@@ -1,8 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import estruturasDados.Tabela;
 import utils.InOut;
 
@@ -10,9 +7,7 @@ public class Main {
 
 	static Tabela tabela;
 
-	public List<Double> main(String metodo, String tamanho) {
-		List<Double> result =  new ArrayList<Double>();
-		
+	public void main(String metodo, String tamanho) {
 		switch (metodo) {
 		case "Quick":
 			QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
@@ -55,7 +50,7 @@ public class Main {
 			InOut.outputError("Opção não disponivel");
 			break;
 		}
-		return result;
+		
 	}
 
 	public void todosMetodosTamanhos() {

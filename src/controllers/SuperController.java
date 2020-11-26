@@ -2,11 +2,15 @@ package controllers;
 
 import estruturasDados.SuperEstrutura;
 import utils.Cronometro;
+import utils.InOutCronometro;
 
 public class SuperController implements InterfaceControllers{
 	
+	InOutCronometro inOutCron = new InOutCronometro();
+	
 	private Integer[] tamanhos = new Integer[] { 500, 1000, 5000, 10000, 50000 };
 	private String[] tiposArqs = new String[] { "alea", "ord", "inv" };
+	
 	private long temposExec;
 	private int contTempos;
 	protected SuperEstrutura estrutura;
@@ -32,11 +36,13 @@ public class SuperController implements InterfaceControllers{
 				}
 				
 				System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j]
-						+ ": " + calculaMediaTempoExecucao() + " segundos!\r");
+						+ ": " + calculaMediaTempoExecucao() + " milesegundos!\r");
+				inOutCron.incrementaTXT(metodoNome,tamanhos[k], tiposArqs[j], calculaMediaTempoExecucao());
 				
 			}
 		}
 		
+		inOutCron.escreveTempoResultado();
 	}
 	
 	public void iniciaApp(String metodoNome, String tamanho) {
@@ -52,11 +58,16 @@ public class SuperController implements InterfaceControllers{
 				geraTXTOrdenado(metodoNome + tamanho + tiposArqs[j] + ".txt");
 				buscaEGeraTXTSaida(metodoNome + tamanho + tiposArqs[j] + "ResultBusca.txt");
 				Cronometro.paraCronometro();
+				somaTempoExecucao(Cronometro.getTempoExecucao());
 
 			}
+			System.out.println("Média de execução do metodo" + metodoNome +""+tamanho + tiposArqs[j]
+					+ ": " + calculaMediaTempoExecucao() + " milesegundos!\r");
+			
+			inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j], calculaMediaTempoExecucao());
 		}
-		
-
+		inOutCron.limpaArquivo();
+		inOutCron.escreveTempoResultado();
 	}
 
 	public void instanciaEstrutura(int nElem) {

@@ -40,9 +40,7 @@ public class QuickSortBuscaBi extends SuperController{
 
 	@Override
 	public void buscaEGeraTXTSaida(String fileName) {
-
 		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName);
-		System.out.println("Fim da execucao");
-		System.out.println("tempo de execução-> "+Cronometro.getTempoExecucao());
+		
 	}
 }

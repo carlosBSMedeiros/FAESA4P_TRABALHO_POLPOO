@@ -1,21 +1,25 @@
 package view;
 
 import java.awt.EventQueue;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 
 import controllers.Main;
 import utils.InOut;
+import utils.InOutCronometro;
 
 public class HomeUI extends JFrame {
 
 	private String tamanhoArquivo;
 	private String metodo;
 	private static Main main;
+	static InOutCronometro cronometro;
 
 	/**
 	 * Launch the application.
@@ -26,11 +30,9 @@ public class HomeUI extends JFrame {
 				try {
 					HomeUI frame = new HomeUI();
 					main = new Main();
+					cronometro = new InOutCronometro();
+
 					frame.setVisible(true);
-					
-					
-					
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,11 +49,6 @@ public class HomeUI extends JFrame {
 		metodo = "Todos";
 
 		getContentPane().setLayout(null);
-
-		JLabel lblimg = new JLabel("");
-		lblimg.setBounds(331, 62, 267, 259);
-		lblimg.setIcon(new ImageIcon("C:\\el\\Fabio.Helmer\\treinamento\\javaFaesa\\trabalho\\FAESA4P_TRABALHO_POLPOO\\src\\view\\home.png"));
-		getContentPane().add(lblimg);
 
 		JComboBox comboBoxMetodo = new JComboBox();
 		comboBoxMetodo.setBounds(170, 40, 160, 32);
@@ -78,7 +75,7 @@ public class HomeUI extends JFrame {
 			tamanhoArquivo = comboBoxTamanhoArquivo.getSelectedItem().toString();
 		});
 
-		JLabel lblmetodo = new JLabel("M�todo");
+		JLabel lblmetodo = new JLabel("Método");
 		lblmetodo.setBounds(43, 49, 46, 14);
 		getContentPane().add(lblmetodo);
 
@@ -88,21 +85,87 @@ public class HomeUI extends JFrame {
 
 		JButton btnInciar = new JButton("Start");
 		btnInciar.addActionListener(event -> {
+			cronometro.limpaArquivo();
 			main.main(metodo, tamanhoArquivo);
 			InOut.outputInformacao("Fim da execusão", "Concluído");
 			hide();
-			
+
 			SaidaUI saidaUI = new SaidaUI();
-			saidaUI.getTable().setValueAt(22.2, saidaUI.ROWQUICK,saidaUI.CL500);
-			saidaUI.getTable().setValueAt(1.2,  saidaUI.ROWQUICK,saidaUI.CL50000);
-			saidaUI.getTable().setValueAt(1.2,  saidaUI.ROWAVL,saidaUI.CL10000);
+			povoaTabela(saidaUI);
 			saidaUI.show();
 		});
 
 		btnInciar.setBounds(170, 159, 160, 32);
 		getContentPane().add(btnInciar);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 300, 614, 371);
+		setBounds(700, 300, 386, 320);
 
 	}
+
+	private void povoaTabela(SaidaUI saidaUI) {
+		List<String[]> tempos = cronometro.leitorTempo();
+
+		for (String[] strings : tempos) {
+			JTable table = null;
+
+			switch (strings[2]) {
+			case "alea":
+				table = saidaUI.getTableAle();
+				break;
+			case "ord":
+				table = saidaUI.getTableOrd();
+				break;
+			case "inv":
+				table = saidaUI.getTableInv();
+				break;
+
+			default:
+				break;
+			}
+
+			encontraLinha(strings, saidaUI, table);
+
+		}
+
+	}
+
+	private void encontraLinha(String[] strings, SaidaUI saidaUI, JTable table) {
+		switch (strings[0]) {
+		case "Quick":
+			entrocaTamanho(strings, saidaUI.ROWQUICK, saidaUI, table);
+			break;
+		case "Heap":
+			entrocaTamanho(strings, saidaUI.ROWHEAP, saidaUI, table);
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
+	private void entrocaTamanho(String[] strings, int linha, SaidaUI saidaUI, JTable table) {
+		switch (strings[1]) {
+		case "500":
+			table.setValueAt(strings[3], linha, saidaUI.CL500);
+			break;
+		case "1000":
+			table.setValueAt(strings[3], linha, saidaUI.CL1000);
+			break;
+		case "5000":
+			table.setValueAt(strings[3], linha, saidaUI.CL5000);
+			break;
+		case "10000":
+			table.setValueAt(strings[3], linha, saidaUI.CL10000);
+			break;
+		case "50000":
+			table.setValueAt(strings[3], linha, saidaUI.CL50000);
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
 }
