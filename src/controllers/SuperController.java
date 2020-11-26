@@ -5,11 +5,16 @@ import utils.Cronometro;
 
 public class SuperController implements InterfaceControllers{
 	
+	private String os;
 	private Integer[] tamanhos = new Integer[] { 500, 1000, 5000, 10000, 50000 };
 	private String[] tiposArqs = new String[] { "alea", "ord", "inv" };
 	private long temposExec;
 	private int contTempos;
 	protected SuperEstrutura estrutura;
+	
+	public String getSistemaOperacional() {
+		return System.getProperty("os.name");
+	}
 	
 	public void iniciaApp(String metodoNome) {
 		for (int k = 0; k < tamanhos.length; k++) {

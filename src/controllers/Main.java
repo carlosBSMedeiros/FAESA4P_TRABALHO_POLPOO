@@ -10,10 +10,11 @@ import utils.InOutInterface;
 
 public class Main {
 
-
 	public List<Double> main(String metodo, String tamanho) {
 		List<Double> result =  new ArrayList<Double>();
 		
+		String sistema = System.getProperty("os.name");
+		System.out.println(sistema);
 		switch (metodo) {
 		case "Quick":
 			QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();

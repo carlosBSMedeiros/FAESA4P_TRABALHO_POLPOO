@@ -18,7 +18,13 @@ public class ArvoreABBController extends SuperController {
 
 	@Override
 	public void povoaEstruturaPeloTXT(String fileName) {
-		InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (Tabela) estrutura);
+		if (getSistemaOperacional() == "Linux") {
+			InOutArquivos.leitorTXTPessoaBanco("arquivos_in/" + fileName, (Tabela) estrutura);
+		}
+		
+		if (getSistemaOperacional() == "Windows") {
+			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (Tabela) estrutura);
+		}
 	}
 
 	@Override
