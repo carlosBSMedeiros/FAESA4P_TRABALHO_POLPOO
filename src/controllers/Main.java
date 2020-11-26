@@ -1,13 +1,14 @@
 package controllers;
 
 import estruturasDados.Tabela;
-import utils.InOut;
+
+import utils.InOutInterface;
+
 
 public class Main {
 
-	static Tabela tabela;
-
 	public void main(String metodo, String tamanho) {
+
 		switch (metodo) {
 		case "Quick":
 			QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
@@ -47,7 +48,7 @@ public class Main {
 			
 			break;
 		default:
-			InOut.outputError("Opção não disponivel");
+			InOutInterface.outputError("Opção não disponivel");
 			break;
 		}
 		
@@ -71,6 +72,6 @@ public class Main {
 		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
 		hpbb.iniciaApp(tamanho);
 
-	}
 
+	}
 }

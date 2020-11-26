@@ -11,8 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import controllers.Main;
-import utils.InOut;
 import utils.InOutCronometro;
+import utils.InOutInterface;
+
 
 public class HomeUI extends JFrame {
 
@@ -87,7 +88,7 @@ public class HomeUI extends JFrame {
 		btnInciar.addActionListener(event -> {
 			cronometro.limpaArquivo();
 			main.main(metodo, tamanhoArquivo);
-			InOut.outputInformacao("Fim da execusão", "Concluído");
+			InOutInterface.outputInformacao("Fim da execusão", "Concluído");
 			hide();
 
 			SaidaUI saidaUI = new SaidaUI();

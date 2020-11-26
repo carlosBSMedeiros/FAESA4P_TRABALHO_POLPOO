@@ -4,16 +4,11 @@ import estruturasDados.Tabela;
 import services.sort.HeapSortService;
 import utils.InOutArquivos;
 
-public class HeapSortBuscaBi extends SuperController{
+public class ArvoreABBController extends SuperController {
 
 	@Override
 	public void iniciaApp() {
-		super.iniciaApp("Heap");
-	}
-	
-	@Override
-	public void iniciaApp(String tamanho) {
-		super.iniciaApp("Heap",tamanho);
+		super.iniciaApp("ArvoreABB");
 	}
 
 	@Override
@@ -30,9 +25,8 @@ public class HeapSortBuscaBi extends SuperController{
 		if (getSistemaOperacional() == "Windows") {
 			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (Tabela) estrutura);
 		}
-		
 	}
-	
+
 	@Override
 	public void ordenaEstrutura() {
 		Ordenacoes.SortService((Tabela) estrutura, new HeapSortService());
@@ -49,7 +43,5 @@ public class HeapSortBuscaBi extends SuperController{
 		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName);
 
 	}
-
-
 
 }

@@ -6,14 +6,21 @@ import utils.InOutCronometro;
 
 public class SuperController implements InterfaceControllers{
 	
+
 	InOutCronometro inOutCron = new InOutCronometro();
 	
+
+	private String os;
 	private Integer[] tamanhos = new Integer[] { 500, 1000, 5000, 10000, 50000 };
 	private String[] tiposArqs = new String[] { "alea", "ord", "inv" };
 	
 	private long temposExec;
 	private int contTempos;
 	protected SuperEstrutura estrutura;
+	
+	public String getSistemaOperacional() {
+		return System.getProperty("os.name");
+	}
 	
 	public void iniciaApp(String metodoNome) {
 		for (int k = 0; k < tamanhos.length; k++) {
@@ -36,9 +43,10 @@ public class SuperController implements InterfaceControllers{
 				}
 				
 				System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j]
+
 						+ ": " + calculaMediaTempoExecucao() + " milesegundos!\r");
 				inOutCron.incrementaTXT(metodoNome,tamanhos[k], tiposArqs[j], calculaMediaTempoExecucao());
-				
+
 			}
 		}
 		
@@ -66,8 +74,10 @@ public class SuperController implements InterfaceControllers{
 			
 			inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j], calculaMediaTempoExecucao());
 		}
+
 		inOutCron.limpaArquivo();
 		inOutCron.escreveTempoResultado();
+
 	}
 
 	public void instanciaEstrutura(int nElem) {
