@@ -1,17 +1,16 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Label;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import java.awt.Color;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-import java.awt.Label;
-import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class SaidaUI extends JFrame {
 

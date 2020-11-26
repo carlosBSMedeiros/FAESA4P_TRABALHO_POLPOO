@@ -1,11 +1,7 @@
 package estruturasDados.arvore;
 
-import java.util.ArrayList;
-
-import estruturasDados.FilaPessoa;
 import metodos.Compare;
 import models.PessoaBanco;
-import services.find.ArvoreFindService;
 import services.sort.ArvoreSortService;
 
 public class ArvoreAVL extends Arvore {
