@@ -12,6 +12,10 @@ public class ArvoreABBController extends SuperController {
 	}
 
 	@Override
+	public void iniciaApp(String tamanho) {
+		super.iniciaApp("ArvoreABB", tamanho);
+	}
+	@Override
 	public void instanciaEstrutura(int nElem) {
 		estrutura = new Tabela(nElem);
 	}

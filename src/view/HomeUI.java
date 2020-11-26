@@ -138,6 +138,12 @@ public class HomeUI extends JFrame {
 		case "Heap":
 			entrocaTamanho(strings, saidaUI.ROWHEAP, saidaUI, table);
 			break;
+		case "ArvoreABB":
+			entrocaTamanho(strings, saidaUI.ROWABB, saidaUI, table);
+			break;
+		case "ArvoreAVL":
+			entrocaTamanho(strings, saidaUI.ROWAVL, saidaUI, table);
+			break;
 
 		default:
 			break;

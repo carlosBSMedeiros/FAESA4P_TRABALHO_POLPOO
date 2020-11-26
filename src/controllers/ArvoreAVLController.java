@@ -12,6 +12,11 @@ public class ArvoreAVLController extends SuperController {
 	public void iniciaApp() {
 		super.iniciaApp("ArvoreAVL");
 	}
+	
+	@Override
+	public void iniciaApp(String tamanho) {
+		super.iniciaApp("ArvoreAVL", tamanho);
+	}
 
 	@Override
 	public void instanciaEstrutura(int nElem) {

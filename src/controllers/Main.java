@@ -1,9 +1,6 @@
 package controllers;
 
-import estruturasDados.Tabela;
-
 import utils.InOutInterface;
-
 
 public class Main {
 
@@ -17,7 +14,7 @@ public class Main {
 			} else {
 				buscaBi.iniciaApp(tamanho);
 			}
-			
+
 			break;
 		case "Heap":
 			HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
@@ -37,21 +34,32 @@ public class Main {
 
 			break;
 		case "Hashing":
-			
+
 			break;
-		
+
 		case "ABB":
-			
+			ArvoreABBController abbController = new ArvoreABBController();
+			if (tamanho.equals("Todos")) {
+				abbController.iniciaApp();
+			} else {
+				abbController.iniciaApp(tamanho);
+			}
 			break;
-			
+
 		case "AVL":
-			
+			ArvoreAVLController arvoreAVLController = new ArvoreAVLController();
+			if (tamanho.equals("Todos")) {
+				arvoreAVLController.iniciaApp();
+			} else {
+				arvoreAVLController.iniciaApp(tamanho);
+			}
+
 			break;
 		default:
 			InOutInterface.outputError("Opção não disponivel");
 			break;
 		}
-		
+
 	}
 
 	public void todosMetodosTamanhos() {
@@ -62,6 +70,11 @@ public class Main {
 		QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
 		buscaBi.iniciaApp();
 
+		ArvoreABBController abbController = new ArvoreABBController();
+		abbController.iniciaApp();
+
+		ArvoreAVLController arvoreAVLController = new ArvoreAVLController();
+		arvoreAVLController.iniciaApp();
 	}
 
 	public void todosMetodosUnicoTamanho(String tamanho) {
@@ -72,6 +85,11 @@ public class Main {
 		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
 		hpbb.iniciaApp(tamanho);
 
+		ArvoreABBController abbController = new ArvoreABBController();
+		abbController.iniciaApp(tamanho);
+
+		ArvoreAVLController arvoreAVLController = new ArvoreAVLController();
+		arvoreAVLController.iniciaApp(tamanho);
 
 	}
 }
