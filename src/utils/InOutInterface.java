@@ -5,10 +5,10 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /*
- * Classe construida para facilitar a utilização da classe JOptinPane
+ * Classe construida para facilitar a utilizaï¿½ï¿½o da classe JOptinPane
  * @autor: Carlos Baraquiel Stein de Medeiros, 2020
  * */
-public class InOut {
+public class InOutInterface {
 
 //		Interesting method, check in documentation
 //		JOptionPane.showInternalConfirmDialog(null, "test");

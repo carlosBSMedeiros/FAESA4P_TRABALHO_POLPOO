@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controllers.Main;
-import utils.InOut;
+import utils.InOutInterface;
 
 public class HomeUI extends JFrame {
 
@@ -89,7 +89,7 @@ public class HomeUI extends JFrame {
 		JButton btnInciar = new JButton("Start");
 		btnInciar.addActionListener(event -> {
 			main.main(metodo, tamanhoArquivo);
-			InOut.outputInformacao("Fim da execusão", "Concluído");
+			InOutInterface.outputInformacao("Fim da execusão", "Concluído");
 			hide();
 			
 			SaidaUI saidaUI = new SaidaUI();

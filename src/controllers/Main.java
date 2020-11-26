@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import estruturasDados.Tabela;
-import utils.InOut;
+
+import utils.InOutInterface;
+
 
 public class Main {
 
-	static Tabela tabela;
 
 	public List<Double> main(String metodo, String tamanho) {
 		List<Double> result =  new ArrayList<Double>();
@@ -52,7 +53,7 @@ public class Main {
 			
 			break;
 		default:
-			InOut.outputError("Opção não disponivel");
+			InOutInterface.outputError("Opção não disponivel");
 			break;
 		}
 		return result;
@@ -76,6 +77,6 @@ public class Main {
 		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
 		hpbb.iniciaApp(tamanho);
 
-	}
 
+	}
 }
