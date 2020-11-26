@@ -4,7 +4,7 @@ import estruturasDados.Tabela;
 import services.sort.HeapSortService;
 import utils.InOutArquivos;
 
-public class Hashing extends SuperController {
+public class HashingController extends SuperController {
 	
 	@Override
 	public void iniciaApp() {
@@ -32,21 +32,21 @@ public class Hashing extends SuperController {
 		}
 	}
 	
-	@Override
-	public void ordenaEstrutura() {
-		Ordenacoes.SortService((Tabela) estrutura, new HeapSortService());
-	}
-
-	@Override
-	public void geraTXTOrdenado(String fileName) {
-		InOutArquivos.escritorTXTPessoaBanco((Tabela) estrutura, fileName);
-	}
-
-	@Override
-	public void buscaEGeraTXTSaida(String fileName) {
-
-		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName);
-
-	}
+//	@Override
+//	public void ordenaEstrutura() {
+//		Ordenacoes.SortService((Tabela) estrutura, new HeapSortService());
+//	}
+//
+//	@Override
+//	public void geraTXTOrdenado(String fileName) {
+//		InOutArquivos.escritorTXTPessoaBanco((Tabela) estrutura, fileName);
+//	}
+//
+//	@Override
+//	public void buscaEGeraTXTSaida(String fileName) {
+//
+//		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName);
+//
+//	}
 
 }
