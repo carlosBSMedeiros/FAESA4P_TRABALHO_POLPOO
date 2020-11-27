@@ -4,75 +4,68 @@ import estruturasDados.SuperEstrutura;
 import utils.Cronometro;
 import utils.InOutCronometro;
 
-public class SuperController implements InterfaceControllers{
-	
+public class SuperController implements InterfaceControllers {
 
 	InOutCronometro inOutCron = new InOutCronometro();
-	
 
 	private String os;
 	private Integer[] tamanhos = new Integer[] { 500, 1000, 5000, 10000, 50000 };
 	private String[] tiposArqs = new String[] { "alea", "ord", "inv" };
-	
-	private long temposExec;
-	private int contTempos;
+
 	protected SuperEstrutura estrutura;
-	
+
 	public String getSistemaOperacional() {
 		return System.getProperty("os.name");
 	}
-	
+
 	public void iniciaApp(String metodoNome) {
 		for (int k = 0; k < tamanhos.length; k++) {
 
 			for (int j = 0; j < tiposArqs.length; j++) {
 
-				temposExec = 0;
-				contTempos = 0;
-				
-				for (int i = 5; i > 0; i--) {
+				Cronometro.iniciaCronometro();
 
-					Cronometro.iniciaCronometro();
+				for (int count = 0; count < 5; count++) {
 					instanciaEstrutura(tamanhos[k]);
 					povoaEstruturaPeloTXT("conta" + tamanhos[k] + tiposArqs[j] + ".txt");
 					ordenaEstrutura();
 					geraTXTOrdenado(metodoNome + tamanhos[k] + tiposArqs[j] + ".txt");
-					buscaEGeraTXTSaida(metodoNome + tamanhos[k] + tiposArqs[j]+ "ResultBusca.txt");
-					Cronometro.paraCronometro();
-					somaTempoExecucao(Cronometro.getTempoExecucao());
+					buscaEGeraTXTSaida(metodoNome + tamanhos[k] + tiposArqs[j] + "ResultBusca.txt");
 				}
-				
-				System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j]
 
-						+ ": " + calculaMediaTempoExecucao() + " milesegundos!\r");
-				inOutCron.incrementaTXT(metodoNome,tamanhos[k], tiposArqs[j], Cronometro.getTempoExecucao());
+				Cronometro.paraCronometro();
+
+				System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j] + ": "
+						+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
+
+				inOutCron.incrementaTXT(metodoNome, tamanhos[k], tiposArqs[j],calculaMediaTempoExecucao(Cronometro.getTempoExecucao()));
 
 			}
 		}
-		
+
 		inOutCron.escreveTempoResultado();
 	}
-	
+
 	public void iniciaApp(String metodoNome, String tamanho) {
 
 		for (int j = 0; j < tiposArqs.length; j++) {
 
-			for (int i = 5; i > 0; i--) {
+			Cronometro.iniciaCronometro();
 
-				Cronometro.iniciaCronometro();
+			for (int count = 0; count < 5; count++) {
 				instanciaEstrutura(Integer.parseInt(tamanho));
 				povoaEstruturaPeloTXT("conta" + tamanho + tiposArqs[j] + ".txt");
 				ordenaEstrutura();
 				geraTXTOrdenado(metodoNome + tamanho + tiposArqs[j] + ".txt");
 				buscaEGeraTXTSaida(metodoNome + tamanho + tiposArqs[j] + "ResultBusca.txt");
-				Cronometro.paraCronometro();
-				somaTempoExecucao(Cronometro.getTempoExecucao());
-
 			}
-			System.out.println("Média de execução do metodo" + metodoNome +""+tamanho + tiposArqs[j]
-					+ ": " + calculaMediaTempoExecucao() + " milesegundos!\r");
-			
-			inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j], Cronometro.getTempoExecucao());
+
+			Cronometro.paraCronometro();
+
+			System.out.println("Média de execução do metodo" + metodoNome + "" + tamanho + tiposArqs[j] + ": "
+					+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
+
+			inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j],calculaMediaTempoExecucao(Cronometro.getTempoExecucao()));
 		}
 
 		inOutCron.limpaArquivo();
@@ -81,33 +74,28 @@ public class SuperController implements InterfaceControllers{
 	}
 
 	public void instanciaEstrutura(int nElem) {
-		
+
 	}
 
 	public void povoaEstruturaPeloTXT(String fileName) {
-		
+
 	}
 
 	public void ordenaEstrutura() {
-		
+
 	}
-	
+
 	public void geraTXTOrdenado(String fileName) {
-		
+
 	}
 
 	public void buscaEGeraTXTSaida(String fileName) {
-		
+
 	}
-	
-	private void somaTempoExecucao(double tempoExec) {
-		this.temposExec += tempoExec;
-		contTempos++;
-	}
-	
-	private long calculaMediaTempoExecucao() {
-		long result = this.temposExec / contTempos;
-		return result;
+
+	private double calculaMediaTempoExecucao(double tempoGasto) {
+		return (tempoGasto / 5);
+
 	}
 
 }

@@ -13,6 +13,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SaidaUI extends JFrame {
 
@@ -41,7 +44,6 @@ public class SaidaUI extends JFrame {
 			public void run() {
 				try {
 					SaidaUI frame = new SaidaUI();
-					frame.setTitle("Tempo gasto por Metodo X Quantidade de Registro");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,6 +56,7 @@ public class SaidaUI extends JFrame {
 	 * Create the frame.
 	 */
 	public SaidaUI() {
+		setTitle("Tempo gasto por Metodo X Quantidade de Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(700, 300, 623, 534);
 		contentPane = new JPanel();
@@ -119,6 +122,16 @@ public class SaidaUI extends JFrame {
 		JSeparator separatorInv_1 = new JSeparator();
 		separatorInv_1.setBounds(70, 45, 531, 2);
 		contentPane.add(separatorInv_1);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(event ->{
+			hide();
+			
+			HomeUI homeUI = new HomeUI();
+			homeUI.show();
+		});
+		btnVoltar.setBounds(503, 11, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 
 	private void criaColunas(JTable table) {
