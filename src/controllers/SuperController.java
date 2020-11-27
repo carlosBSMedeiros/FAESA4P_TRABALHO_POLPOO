@@ -45,7 +45,7 @@ public class SuperController implements InterfaceControllers{
 				System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j]
 
 						+ ": " + calculaMediaTempoExecucao() + " milesegundos!\r");
-				inOutCron.incrementaTXT(metodoNome,tamanhos[k], tiposArqs[j], calculaMediaTempoExecucao());
+				inOutCron.incrementaTXT(metodoNome,tamanhos[k], tiposArqs[j], Cronometro.getTempoExecucao());
 
 			}
 		}
@@ -72,7 +72,7 @@ public class SuperController implements InterfaceControllers{
 			System.out.println("Média de execução do metodo" + metodoNome +""+tamanho + tiposArqs[j]
 					+ ": " + calculaMediaTempoExecucao() + " milesegundos!\r");
 			
-			inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j], calculaMediaTempoExecucao());
+			inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j], Cronometro.getTempoExecucao());
 		}
 
 		inOutCron.limpaArquivo();
