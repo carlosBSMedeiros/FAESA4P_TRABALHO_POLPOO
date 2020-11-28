@@ -103,6 +103,11 @@ public class HomeUI extends JFrame {
 
 	}
 
+	
+	
+	 //encontra a tabela que vai ser inserido o registro de tempo
+	
+	
 	private void povoaTabela(SaidaUI saidaUI) {
 		List<String[]> tempos = cronometro.leitorTempo();
 
@@ -129,7 +134,7 @@ public class HomeUI extends JFrame {
 		}
 
 	}
-
+	//encontra a linha da tabela que vai ser inserido o registro de tempo
 	private void encontraLinha(String[] strings, SaidaUI saidaUI, JTable table) {
 		switch (strings[0]) {
 		case "Quick":
@@ -150,23 +155,24 @@ public class HomeUI extends JFrame {
 		}
 
 	}
-
+	
+	//encontra a coluna da tabela que vai ser inserido o registro de tempo
 	private void entrocaTamanho(String[] strings, int linha, SaidaUI saidaUI, JTable table) {
 		switch (strings[1]) {
 		case "500":
-			table.setValueAt(strings[3], linha, saidaUI.CL500);
+			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL500);
 			break;
 		case "1000":
-			table.setValueAt(strings[3], linha, saidaUI.CL1000);
+			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL1000);
 			break;
 		case "5000":
-			table.setValueAt(strings[3], linha, saidaUI.CL5000);
+			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL5000);
 			break;
 		case "10000":
-			table.setValueAt(strings[3], linha, saidaUI.CL10000);
+			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL10000);
 			break;
 		case "50000":
-			table.setValueAt(strings[3], linha, saidaUI.CL50000);
+			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL50000);
 			break;
 
 		default:

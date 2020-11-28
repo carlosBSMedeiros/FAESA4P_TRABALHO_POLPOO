@@ -5,7 +5,10 @@ import utils.InOutInterface;
 public class Main {
 
 	public void main(String metodo, String tamanho) {
-
+		/*
+		 * a interface usa essa classe para encaminha o fluxo de execução para rodar todos os metodos ou se rodara apenas um especifico 
+		 * */
+		
 		switch (metodo) {
 		case "Quick":
 			QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
@@ -28,9 +31,7 @@ public class Main {
 		case "Todos":
 			if (tamanho.equals("Todos")) {
 				todosMetodosTamanhos();
-			} else {
-				todosMetodosUnicoTamanho(tamanho);
-			}
+			} 
 
 			break;
 		case "Hashing":
@@ -63,6 +64,7 @@ public class Main {
 	}
 
 	public void todosMetodosTamanhos() {
+		//metodo que rodará todos os metodos em todos os tamanhos
 
 		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
 		hpbb.iniciaApp();
@@ -77,19 +79,4 @@ public class Main {
 		arvoreAVLController.iniciaApp();
 	}
 
-	public void todosMetodosUnicoTamanho(String tamanho) {
-
-		QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
-		buscaBi.iniciaApp(tamanho);
-
-		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
-		hpbb.iniciaApp(tamanho);
-
-		ArvoreABBController abbController = new ArvoreABBController();
-		abbController.iniciaApp(tamanho);
-
-		ArvoreAVLController arvoreAVLController = new ArvoreAVLController();
-		arvoreAVLController.iniciaApp(tamanho);
-
-	}
 }
