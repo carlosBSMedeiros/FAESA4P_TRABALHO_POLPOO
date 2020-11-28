@@ -8,17 +8,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import estruturasDados.Tabela;
-
 
 public class InOutCronometro {
 	
 	private static BufferedWriter buffWrite;
 	private StringBuilder strb;
-	private boolean append;
 	
 	public InOutCronometro() {
-		append = false;
 		strb = new StringBuilder();
 	}
 	
@@ -32,7 +28,6 @@ public class InOutCronometro {
 		try {
 			
 			buffWrite = new BufferedWriter(new FileWriter("arquivos_out_cronometro/resultadosTempos.txt",true));
-			append = true;
 			buffWrite.append(strb.toString());
 			finalizaBuffWrite();
 			
