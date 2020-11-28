@@ -5,7 +5,7 @@ import utils.InOutInterface;
 public class Main {
 
 	public void main(String metodo, String tamanho) {
-
+		
 		switch (metodo) {
 		case "Quick":
 			QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
