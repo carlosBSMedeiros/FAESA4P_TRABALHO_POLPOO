@@ -113,7 +113,7 @@ public class ListaSimples {
 	public No pesInfo(PessoaBanco k) {
 		No atual = this.prim;
 		if (!isVazia()) {
-			while ((atual != null) && Compare.pessoa(atual.getInfo().getChave(), k) != 0) {
+			while ((atual != null) && (Compare.pessoa(atual.getInfo().getChave(), k) != 0)) {
 				atual = atual.getProx();
 			}
 		}
@@ -122,37 +122,37 @@ public class ListaSimples {
 
 
 
-//	// remove da k-esima posicao
-//	public boolean removeKesima(int k) {
-//		No atual = this.prim;
-//		No ant = null;
-//		if (isVazia()) {
-//			return false;
-//		} else {
-//			while ((atual != null) && (atual.getInfo().getChave() != k)) {
-//				ant = atual;
-//				atual = atual.getProx();
-//			}
-//			if (atual == null) {
-//				return false;
-//			} else {
-//				if (atual == this.prim) {
-//					if (this.prim == this.ult) {
-//						this.ult = null;
-//					}
-//					this.prim = this.prim.getProx();
-//				} else {
-//					if (atual == this.ult) {
-//						this.ult = ant;
-//					}
-//					ant.setProx(atual.getProx());
-//				}
-//				this.quantNos--;
-//				return true;
-//
-//			}
-//		}
-//	}
+	// remove da k-esima posicao
+	public boolean removeKesima(PessoaBanco k) {
+		No atual = this.prim;
+		No ant = null;
+		if (isVazia()) {
+			return false;
+		} else {
+			while ((atual != null) &&  (Compare.pessoa(atual.getInfo().getChave(), k) != 0)) {
+				ant = atual;
+				atual = atual.getProx();
+			}
+			if (atual == null) {
+				return false;
+			} else {
+				if (atual == this.prim) {
+					if (this.prim == this.ult) {
+						this.ult = null;
+					}
+					this.prim = this.prim.getProx();
+				} else {
+					if (atual == this.ult) {
+						this.ult = ant;
+					}
+					ant.setProx(atual.getProx());
+				}
+				this.quantNos--;
+				return true;
+
+			}
+		}
+	}
 
 	// concatena a lista no final
 	public boolean concListas(ListaSimples listaSimples) {
