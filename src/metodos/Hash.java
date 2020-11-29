@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Hash {
 	private ArrayList<Integer> primes = new ArrayList<Integer>();
 
-	public int Hashing(int chave, int M) {
-		return chave / M;
+	public int Hashing(int chave, int qtdElem) {
+		return chave / this.getM(qtdElem);
 	}
 
 	public ArrayList<Integer> getPrimeArray() {
@@ -60,6 +60,18 @@ public class Hash {
 	         return num2;
 	 
 	 }
+	
+	//Num no caso seria a quantidade de elementos da tabela
+	public int getM(int num) {
+		int M;
+		M = (int) (1.1 * num);
+		if(this.isPrime(M)) {
+			return M;
+		} else {
+			this.getPrime(M);
+			return M;
+		}
+	}
 
 	
 }
