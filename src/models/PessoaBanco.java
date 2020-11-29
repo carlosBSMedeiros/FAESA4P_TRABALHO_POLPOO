@@ -68,5 +68,13 @@ public class PessoaBanco {
 			return " Conta não especificada: ";
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "PessoaBanco [cpf=" + cpf + ", nome=" + nome + ", agencia=" + agencia + ", conta=" + conta + ", saldo="
+				+ saldo + "]";
+	}
+	
+	
 	
 }
