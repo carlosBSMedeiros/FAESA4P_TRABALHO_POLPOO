@@ -1,7 +1,5 @@
 package estruturasDados.ListaEncadeada;
 
-
-
 public class No {
 	private Item info;
 	private No prox;

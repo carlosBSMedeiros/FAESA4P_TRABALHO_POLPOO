@@ -1,0 +1,3 @@
+Quick;10000;alea;1.0
+Quick;10000;ord;0.6
+Quick;10000;inv;0.8

@@ -1,9 +1,10 @@
 package estruturasDados.ListaEncadeada;
 
+import estruturasDados.SuperEstrutura;
 import metodos.Compare;
 import models.PessoaBanco;
 
-public class ListaSimples {
+public class ListaSimples extends SuperEstrutura{
 	private No prim;
 	private No ult;
 	private int quantNos;

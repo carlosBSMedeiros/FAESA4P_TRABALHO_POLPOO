@@ -86,20 +86,35 @@ public class HomeUI extends JFrame {
 
 		JButton btnInciar = new JButton("Start");
 		btnInciar.addActionListener(event -> {
-			cronometro.limpaArquivo();
-			main.main(metodo, tamanhoArquivo);
-			InOutInterface.outputInformacao("Fim da execusão", "Concluído");
-			hide();
+			
+			if (metodo.equals("Todos")) {
+				if (!tamanhoArquivo.equals("Todos")) {
+					InOutInterface.outputError("Opcao nao disponivel!");
+				} else {
+					start();
+				}
+			} else {
+				start();
+			}
 
-			SaidaUI saidaUI = new SaidaUI();
-			povoaTabela(saidaUI);
-			saidaUI.show();
 		});
 
 		btnInciar.setBounds(170, 159, 160, 32);
 		getContentPane().add(btnInciar);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(700, 300, 386, 320);
+
+	}
+	
+	private void start() {
+		cronometro.limpaArquivo();
+		main.main(metodo, tamanhoArquivo);
+		InOutInterface.outputInformacao("Fim da execusão", "Concluído");
+		hide();
+
+		SaidaUI saidaUI = new SaidaUI();
+		povoaTabela(saidaUI);
+		saidaUI.show();
 
 	}
 
