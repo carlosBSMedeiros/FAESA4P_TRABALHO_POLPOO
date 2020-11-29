@@ -1,9 +1,8 @@
 package controllers;
 
-import estruturasDados.Tabela;
 import estruturasDados.arvore.ArvoreABB;
 import services.find.ArvoreFindService;
-import services.sort.HeapSortService;
+import services.sort.ArvoreSortService;
 import utils.InOutArquivos;
 
 public class ArvoreABBController extends SuperController {
@@ -19,7 +18,7 @@ public class ArvoreABBController extends SuperController {
 	}
 	@Override
 	public void instanciaEstrutura(int nElem) {
-		estrutura = new Tabela(nElem);
+		estrutura = new ArvoreABB();
 	}
 
 	@Override
@@ -35,7 +34,7 @@ public class ArvoreABBController extends SuperController {
 
 	@Override
 	public void ordenaEstrutura() {
-		Ordenacoes.SortService((Tabela) estrutura, new HeapSortService());
+		Ordenacoes.SortService((ArvoreABB) estrutura, new ArvoreSortService());
 	}
 
 	@Override

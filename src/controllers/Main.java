@@ -83,6 +83,30 @@ public class Main {
 
 		ArvoreAVLController arvoreAVLController = new ArvoreAVLController();
 		arvoreAVLController.iniciaApp();
+		
+		HashingController hashingController = new HashingController();
+		hashingController.iniciaApp();
+	}
+	
+	
+	
+	public void todosMetodosUnicoTamanho(String tamanho) {
+		//metodo que rodará todos os metodos e um unico tamanho
+		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
+		hpbb.iniciaApp(tamanho);
+
+		QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
+		buscaBi.iniciaApp(tamanho);
+
+		ArvoreABBController abbController = new ArvoreABBController();
+		abbController.iniciaApp(tamanho);
+
+		ArvoreAVLController arvoreAVLController = new ArvoreAVLController();
+		arvoreAVLController.iniciaApp(tamanho);
+		
+		HashingController hashingController = new HashingController();
+		hashingController.iniciaApp(tamanho);
+
 	}
 
 }

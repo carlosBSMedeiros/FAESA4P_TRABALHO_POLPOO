@@ -1,16 +1,19 @@
 package estruturaDados.Hash;
 
-import controllers.SuperController;
+import java.util.ArrayList;
+import java.util.List;
+
 import estruturasDados.SuperEstrutura;
-import estruturasDados.Tabela;
 import models.PessoaBanco;
 
 public class Hash extends SuperEstrutura {
 
 	private NoHash[] hashEncadeado;
+	private List<Integer> indexs;
 
 	public Hash(int tamanho) {
 		hashEncadeado = new NoHash[getTamanhoVetor(tamanho)];
+		indexs = new ArrayList<Integer>();
 	}
 
 	public void insere(PessoaBanco pessoa) {
@@ -19,6 +22,7 @@ public class Hash extends SuperEstrutura {
 		if (noHash != null) {
 			noHash.getInfos().add(pessoa);
 		} else {
+			indexs.add(index);
 			noHash = new NoHash();
 			noHash.getInfos().add(pessoa);
 			this.hashEncadeado[index] = noHash;
@@ -94,6 +98,14 @@ public class Hash extends SuperEstrutura {
 		}
 
 		return msg;
+	}
+
+	public NoHash[] getHashEncadeado() {
+		return this.hashEncadeado;
+	}
+
+	public List<Integer> getIndexs() {
+		return indexs;
 	}
 
 }

@@ -1,7 +1,9 @@
 package controllers;
 
 import estruturasDados.Tabela;
+import services.find.HashFindService;
 import estruturaDados.Hash.Hash;
+import estruturaDados.Hash.NoHash;
 import utils.InOutArquivos;
 
 public class HashingController extends SuperController {
@@ -25,28 +27,22 @@ public class HashingController extends SuperController {
 	public void povoaEstruturaPeloTXT(String fileName) {
 		if (getSistemaOperacional() == "Linux") {
 			InOutArquivos.leitorTXTPessoaBanco("arquivos_in/" + fileName, (Hash) estrutura);
-		}
-		
-		if (getSistemaOperacional() == "Windows") {
+		}else {
 			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName,(Hash) estrutura);
 		}
+		
 	}
-	
-//	@Override
-//	public void ordenaEstrutura() {
-//		Ordenacoes.SortService((Tabela) estrutura, new HeapSortService());
-//	}
-//
-//	@Override
-//	public void geraTXTOrdenado(String fileName) {
-//		InOutArquivos.escritorTXTPessoaBanco((Tabela) estrutura, fileName);
-//	}
-//
-//	@Override
-//	public void buscaEGeraTXTSaida(String fileName) {
-//
-//		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName);
-//
-//	}
+
+
+	@Override
+	public void geraTXTOrdenado(String fileName) {
+		InOutArquivos.escritorTXTPessoaBanco((Hash) estrutura, fileName);
+	}
+
+	@Override
+	public void buscaEGeraTXTSaida(String fileName) {
+		InOutArquivos.leitorTXTBusca((Hash) estrutura, fileName, new HashFindService());
+
+	}
 
 }

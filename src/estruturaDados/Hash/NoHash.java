@@ -1,28 +1,15 @@
 package estruturaDados.Hash;
 
-import java.util.ArrayList;
-import models.PessoaBanco;
+import estruturasDados.ListaEncadeada.ListaSimples;
 
 public class NoHash {
-	private ArrayList<PessoaBanco> infos;
+	private ListaSimples infos;
 
 	public NoHash() {
-		infos = new ArrayList<PessoaBanco>();
+		infos = new ListaSimples();
 	}
 
-	public ArrayList<PessoaBanco> getInfos() {
+	public ListaSimples getInfos() {
 		return infos;
 	}
-
-	@Override
-	public String toString() {
-		String msg = "";
-
-		for (PessoaBanco x : infos) {
-			msg += x.toString() + "\n";
-		}
-
-		return msg;
-	}
-
 }

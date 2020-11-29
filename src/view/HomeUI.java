@@ -58,7 +58,7 @@ public class HomeUI extends JFrame {
 		comboBoxMetodo.addItem("Heap");
 		comboBoxMetodo.addItem("ABB");
 		comboBoxMetodo.addItem("AVL");
-		comboBoxMetodo.addItem("Hasing");
+		comboBoxMetodo.addItem("Hashing");
 		getContentPane().add(comboBoxMetodo);
 		comboBoxMetodo.addActionListener(event -> {
 			metodo = comboBoxMetodo.getSelectedItem().toString();
@@ -163,6 +163,9 @@ public class HomeUI extends JFrame {
 			break;
 		case "ArvoreAVL":
 			entrocaTamanho(strings, saidaUI.ROWAVL, saidaUI, table);
+			break;
+		case "Hashing":
+			entrocaTamanho(strings, saidaUI.ROWHASING, saidaUI, table);
 			break;
 
 		default:

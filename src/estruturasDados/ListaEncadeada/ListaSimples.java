@@ -42,8 +42,8 @@ public class ListaSimples extends SuperEstrutura{
 	}
 
 	// aidiona na primeira posicao da lista
-	public void addNoComeco(Item item) {
-		No novoNo = new No(item);
+	public void addNoComeco(PessoaBanco PessoaBanco) {
+		No novoNo = new No(PessoaBanco);
 		if (this.quantNos == 0) {
 			this.prim = novoNo;
 		} else {
@@ -53,9 +53,9 @@ public class ListaSimples extends SuperEstrutura{
 		this.quantNos++;
 	}
 
-	// adiciona item na ultimo posicao
-	public void add(Item item) {
-		No novoNo = new No(item);
+	// adiciona PessoaBanco na ultimo posicao
+	public void add(PessoaBanco PessoaBanco) {
+		No novoNo = new No(PessoaBanco);
 		if (this.isVazia()) {
 			this.prim = novoNo;
 		} else {
@@ -65,14 +65,14 @@ public class ListaSimples extends SuperEstrutura{
 		this.quantNos++;
 	}
 	// adicona valorios itens a lista
-	public void add(Item... items) {
-		for (Item item : items) {
-			add(item);
+	public void add(PessoaBanco... PessoaBancos) {
+		for (PessoaBanco PessoaBanco : PessoaBancos) {
+			add(PessoaBanco);
 		}
 	}
 
 	// adiciona no k-esima posicao
-	public boolean addKesimo(int k, Item elem) {
+	public boolean addKesimo(int k, PessoaBanco elem) {
 
 		if (this.prim == null || this.quantNos < k) {
 			return false;
@@ -114,7 +114,7 @@ public class ListaSimples extends SuperEstrutura{
 	public No pesInfo(PessoaBanco k) {
 		No atual = this.prim;
 		if (!isVazia()) {
-			while ((atual != null) && (Compare.pessoa(atual.getInfo().getChave(), k) != 0)) {
+			while ((atual != null) && (Compare.pessoa(atual.getInfo(), k) != 0)) {
 				atual = atual.getProx();
 			}
 		}
@@ -130,7 +130,7 @@ public class ListaSimples extends SuperEstrutura{
 		if (isVazia()) {
 			return false;
 		} else {
-			while ((atual != null) &&  (Compare.pessoa(atual.getInfo().getChave(), k) != 0)) {
+			while ((atual != null) &&  (Compare.pessoa(atual.getInfo(), k) != 0)) {
 				ant = atual;
 				atual = atual.getProx();
 			}
@@ -196,7 +196,7 @@ public class ListaSimples extends SuperEstrutura{
 		String msg = "";
 		No atual = this.prim;
 		while (atual != null) {
-			msg += atual.getInfo().getChave().toString() + "\n";
+			msg += atual.getInfo().toString() + "\n";
 			atual = atual.getProx();
 		}
 		return msg;

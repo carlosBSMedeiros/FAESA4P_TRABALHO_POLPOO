@@ -13,6 +13,7 @@ import controllers.SuperController;
 import estruturasDados.FilaPessoa;
 import estruturasDados.SuperEstrutura;
 import estruturasDados.Tabela;
+import estruturasDados.ListaEncadeada.No;
 import estruturasDados.arvore.ArvoreAVL;
 import models.PessoaBanco;
 import services.find.ArvoreFindService;
@@ -65,7 +66,7 @@ public class InOutArquivos {
 		} else if (estrutura instanceof ArvoreAVL) {
 			((ArvoreAVL) estrutura).insereRaiz(pessoa);
 		} else if (estrutura instanceof Hash) {
-			((ArvoreAVL) estrutura).insereRaiz(pessoa);
+			((Hash) estrutura).insere(pessoa);
 		} else if (estrutura instanceof ArvoreABB) {
 			((ArvoreABB) estrutura).insere(pessoa, ((ArvoreABB) estrutura));
 		}
@@ -89,7 +90,7 @@ public class InOutArquivos {
 					if (!linha.equals("")) {
 						String cpfBusca = linha.split(";")[0];
 						FilaPessoa result = Buscas.FindService(estrutura, cpfBusca, service);
-
+						escritorTXTBusca(buffWrite, result, cpfBusca);
 					}
 
 				} else
@@ -191,6 +192,43 @@ public class InOutArquivos {
 		}
 
 	}
+	
+	public static void escritorTXTPessoaBanco(Hash hash, String fileName) {
+		try {
+
+			String path = "arquivos_out/" + fileName;
+			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+			StringBuilder strb = new StringBuilder();
+
+			for (Integer i : hash.getIndexs()) {
+				No atual = hash.getHashEncadeado()[i].getInfos().getPrim();
+
+				while (atual != null) {
+
+					strb.delete(0, strb.length());
+
+					PessoaBanco aux = atual.getInfo();
+
+					strb.append(aux.getCpf()).append(";").append(aux.getNome()).append(";").append(aux.getAgencia())
+							.append(";").append(aux.getConta()).append(";").append(aux.getSaldo());
+
+					buffWrite.append(strb.toString() + "\n");
+
+					atual = atual.getProx();
+
+				}
+
+			}
+
+			buffWrite.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+
 
 	private static boolean escritorTXTBusca(BufferedWriter buffWrite, FilaPessoa result, String cpfBusca) {
 

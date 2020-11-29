@@ -1,10 +1,8 @@
 package controllers;
 
-import estruturasDados.Tabela;
 import estruturasDados.arvore.ArvoreAVL;
 import services.find.ArvoreFindService;
 import services.sort.ArvoreSortService;
-import services.sort.HeapSortService;
 import utils.InOutArquivos;
 
 public class ArvoreAVLController extends SuperController {

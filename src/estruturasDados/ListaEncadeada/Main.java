@@ -34,14 +34,6 @@ public class Main {
 		c4.setCpf("651465165165165");
 		c4.setSaldo("1500");
 		
-		list.add(new Item(c1),new Item(c2),new Item(c3));
-		System.out.println(list.toString());
-		
-		System.out.println("pesq");
-		System.out.println(list.pesInfo(c2).getInfo().getChave().toString());
-		
-		System.out.println("add k");
-		list.addKesimo(2, new Item(c4));
 		
 		System.out.println(list.toString());
 		System.out.println("remove k");

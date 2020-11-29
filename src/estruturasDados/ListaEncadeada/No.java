@@ -1,18 +1,20 @@
 package estruturasDados.ListaEncadeada;
 
+import models.PessoaBanco;
+
 public class No {
-	private Item info;
+	private PessoaBanco info;
 	private No prox;
 
-	public No(Item item) {
+	public No(PessoaBanco item) {
 		this.info = item;
 	}
 
-	public Item getInfo() {
+	public PessoaBanco getInfo() {
 		return info;
 	}
 
-	public void setInfo(Item info) {
+	public void setInfo(PessoaBanco info) {
 		this.info = info;
 	}
 
