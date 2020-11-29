@@ -1,6 +1,7 @@
 package controllers;
 
 import estruturasDados.Tabela;
+import services.find.BuscaBinFindService;
 import services.sort.HeapSortService;
 import utils.InOutArquivos;
 
@@ -45,9 +46,7 @@ public class HeapSortBuscaBi extends SuperController{
 
 	@Override
 	public void buscaEGeraTXTSaida(String fileName) {
-
-		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName);
-
+		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName, new BuscaBinFindService());
 	}
 
 

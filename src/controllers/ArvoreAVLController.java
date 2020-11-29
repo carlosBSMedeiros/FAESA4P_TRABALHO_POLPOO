@@ -2,6 +2,7 @@ package controllers;
 
 import estruturasDados.Tabela;
 import estruturasDados.arvore.ArvoreAVL;
+import services.find.ArvoreFindService;
 import services.sort.ArvoreSortService;
 import services.sort.HeapSortService;
 import utils.InOutArquivos;
@@ -47,7 +48,7 @@ public class ArvoreAVLController extends SuperController {
 	@Override
 	public void buscaEGeraTXTSaida(String fileName) {
 
-		InOutArquivos.leitorTXTBusca((ArvoreAVL) estrutura, fileName);
+		InOutArquivos.leitorTXTBusca((ArvoreAVL) estrutura, fileName, new ArvoreFindService());
 
 	}
 

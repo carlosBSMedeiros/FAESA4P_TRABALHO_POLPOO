@@ -1,7 +1,7 @@
 package controllers;
 
 import estruturasDados.Tabela;
-import services.sort.HeapSortService;
+import estruturaDados.Hash.Hash;
 import utils.InOutArquivos;
 
 public class HashingController extends SuperController {
@@ -18,17 +18,17 @@ public class HashingController extends SuperController {
 
 	@Override
 	public void instanciaEstrutura(int nElem) {
-		estrutura = new Tabela(nElem);
+		estrutura = new Hash(nElem);
 	}
 
 	@Override
 	public void povoaEstruturaPeloTXT(String fileName) {
 		if (getSistemaOperacional() == "Linux") {
-			InOutArquivos.leitorTXTPessoaBanco("arquivos_in/" + fileName, (Tabela) estrutura);
+			InOutArquivos.leitorTXTPessoaBanco("arquivos_in/" + fileName, (Hash) estrutura);
 		}
 		
 		if (getSistemaOperacional() == "Windows") {
-			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (Tabela) estrutura);
+			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName,(Hash) estrutura);
 		}
 	}
 	

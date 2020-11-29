@@ -9,19 +9,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import controllers.Buscas;
+import controllers.SuperController;
 import estruturasDados.FilaPessoa;
+import estruturasDados.SuperEstrutura;
 import estruturasDados.Tabela;
 import estruturasDados.arvore.ArvoreAVL;
 import models.PessoaBanco;
 import services.find.ArvoreFindService;
 import services.find.BuscaBinFindService;
+import services.find.GenericFindService;
 import estruturasDados.arvore.ArvoreABB;
+import estruturaDados.Hash.Hash;
 
 //	//cpf;nome;ag�ncia;conta;saldo
 
 public class InOutArquivos {
 
-	public static void leitorTXTPessoaBanco(String path, Tabela tabela) {
+	public static void leitorTXTPessoaBanco(String path, SuperEstrutura estrutura) {
 		try {
 
 			BufferedReader buffRead = new BufferedReader(new FileReader(path));
@@ -31,7 +35,7 @@ public class InOutArquivos {
 				if (linha != null) {
 
 					if (!linha.equals("")) {
-						preencheTabela(linha, tabela);
+						preencheEstrutura(linha, estrutura);
 					}
 
 				} else
@@ -45,59 +49,30 @@ public class InOutArquivos {
 		}
 	}
 
-	public static void leitorTXTPessoaBanco(String path, ArvoreAVL arvore) {
-		try {
+	private static void preencheEstrutura(String linha, SuperEstrutura estrutura) {
+		PessoaBanco pessoa = new PessoaBanco();
 
-			BufferedReader buffRead = new BufferedReader(new FileReader(path));
-			String linha = "";
+		String[] aux = linha.split(";");
 
-			while (true) {
-				if (linha != null) {
+		pessoa.setCpf(aux[0]);
+		pessoa.setNome(aux[1]);
+		pessoa.setAgencia(aux[2]);
+		pessoa.setConta(aux[3]);
+		pessoa.setSaldo(aux[4]);
 
-					if (linha != null && !linha.isEmpty()) {
-						preencheArvore(linha, arvore);
-					}
-
-				} else
-					break;
-				linha = buffRead.readLine();
-			}
-			buffRead.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (estrutura instanceof Tabela) {
+			((Tabela) estrutura).addItem(pessoa);
+		} else if (estrutura instanceof ArvoreAVL) {
+			((ArvoreAVL) estrutura).insereRaiz(pessoa);
+		} else if (estrutura instanceof Hash) {
+			((ArvoreAVL) estrutura).insereRaiz(pessoa);
+		} else if (estrutura instanceof ArvoreABB) {
+			((ArvoreABB) estrutura).insere(pessoa, ((ArvoreABB) estrutura));
 		}
+
 	}
 
-	private static void preencheTabela(String linha, Tabela tabela) {
-		PessoaBanco pessoa = new PessoaBanco();
-
-		String[] aux = linha.split(";");
-
-		pessoa.setCpf(aux[0]);
-		pessoa.setNome(aux[1]);
-		pessoa.setAgencia(aux[2]);
-		pessoa.setConta(aux[3]);
-		pessoa.setSaldo(aux[4]);
-
-		tabela.addItem(pessoa);
-	}
-
-	private static void preencheArvore(String linha, ArvoreAVL arvore) {
-		PessoaBanco pessoa = new PessoaBanco();
-
-		String[] aux = linha.split(";");
-
-		pessoa.setCpf(aux[0]);
-		pessoa.setNome(aux[1]);
-		pessoa.setAgencia(aux[2]);
-		pessoa.setConta(aux[3]);
-		pessoa.setSaldo(aux[4]);
-
-		arvore.insereRaiz(pessoa);
-	}
-
-	public static void leitorTXTBusca(ArvoreAVL arvore, String fileName) {
+	public static void leitorTXTBusca(SuperEstrutura estrutura, String fileName, GenericFindService service) {
 		BufferedReader buffRead;
 		BufferedWriter buffWrite;
 		try {
@@ -113,9 +88,8 @@ public class InOutArquivos {
 
 					if (!linha.equals("")) {
 						String cpfBusca = linha.split(";")[0];
-						FilaPessoa result = Buscas.FindService(arvore, cpfBusca, new ArvoreFindService());
+						FilaPessoa result = Buscas.FindService(estrutura, cpfBusca, service);
 
-//						escritorTXTBusca(buffWrite, result, cpfBusca);
 					}
 
 				} else
@@ -129,44 +103,6 @@ public class InOutArquivos {
 
 		} catch (FileNotFoundException e) {
 			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NÃO ENCONTRADO");
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void leitorTXTBusca(ArvoreABB arvore, String fileName) {
-		BufferedReader buffRead;
-		BufferedWriter buffWrite;
-		try {
-
-			String path = "arquivos_out/" + fileName;
-			buffWrite = new BufferedWriter(new FileWriter(path));
-
-			buffRead = new BufferedReader(new FileReader("arquivos_in/Conta.txt"));
-			String linha = "";
-
-			while (true) {
-				if (linha != null) {
-
-					if (!linha.equals("")) {
-						String cpfBusca = linha.split(";")[0];
-						FilaPessoa result = Buscas.FindService(arvore, cpfBusca, new ArvoreFindService());
-
-						escritorTXTBusca(buffWrite, result, cpfBusca);
-					}
-
-				} else
-					break;
-
-				linha = buffRead.readLine();
-			}
-
-			buffRead.close();
-			buffWrite.close();
-
-		} catch (FileNotFoundException e) {
-			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA N�O ENCONTRADO");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -254,44 +190,6 @@ public class InOutArquivos {
 			e.printStackTrace();
 		}
 
-	}
-
-	public static void leitorTXTBusca(Tabela tabela, String fileName) {
-		BufferedReader buffRead;
-		BufferedWriter buffWrite;
-		try {
-
-			String path = "arquivos_out/" + fileName;
-			buffWrite = new BufferedWriter(new FileWriter(path));
-
-			buffRead = new BufferedReader(new FileReader("arquivos_in/Conta.txt"));
-			String linha = "";
-
-			while (true) {
-				if (linha != null) {
-
-					if (!linha.equals("")) {
-						String cpfBusca = linha.split(";")[0];
-						FilaPessoa result = Buscas.FindService(tabela, cpfBusca, new BuscaBinFindService());
-
-						escritorTXTBusca(buffWrite, result, cpfBusca);
-					}
-
-				} else
-					break;
-
-				linha = buffRead.readLine();
-			}
-
-			buffRead.close();
-			buffWrite.close();
-
-		} catch (FileNotFoundException e) {
-			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NãO ENCONTRADO");
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private static boolean escritorTXTBusca(BufferedWriter buffWrite, FilaPessoa result, String cpfBusca) {

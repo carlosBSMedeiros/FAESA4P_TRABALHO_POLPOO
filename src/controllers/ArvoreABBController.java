@@ -1,6 +1,8 @@
 package controllers;
 
 import estruturasDados.Tabela;
+import estruturasDados.arvore.ArvoreABB;
+import services.find.ArvoreFindService;
 import services.sort.HeapSortService;
 import utils.InOutArquivos;
 
@@ -23,11 +25,11 @@ public class ArvoreABBController extends SuperController {
 	@Override
 	public void povoaEstruturaPeloTXT(String fileName) {
 		if (getSistemaOperacional() == "Linux") {
-			InOutArquivos.leitorTXTPessoaBanco("arquivos_in/" + fileName, (Tabela) estrutura);
+			InOutArquivos.leitorTXTPessoaBanco("arquivos_in/" + fileName, (ArvoreABB) estrutura);
 		}
 		
 		if (getSistemaOperacional() == "Windows") {
-			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (Tabela) estrutura);
+			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (ArvoreABB) estrutura);
 		}
 	}
 
@@ -38,13 +40,13 @@ public class ArvoreABBController extends SuperController {
 
 	@Override
 	public void geraTXTOrdenado(String fileName) {
-		InOutArquivos.escritorTXTPessoaBanco((Tabela) estrutura, fileName);
+		InOutArquivos.escritorTXTPessoaBanco((ArvoreABB) estrutura, fileName);
 	}
 
 	@Override
 	public void buscaEGeraTXTSaida(String fileName) {
 
-		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName);
+		InOutArquivos.leitorTXTBusca((ArvoreABB) estrutura, fileName, new ArvoreFindService());
 
 	}
 

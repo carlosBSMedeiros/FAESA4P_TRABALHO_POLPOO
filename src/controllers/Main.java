@@ -35,7 +35,13 @@ public class Main {
 
 			break;
 		case "Hashing":
-
+			HashingController hashController = new HashingController();
+			if (tamanho.equals("Todos")) {
+				hashController.iniciaApp();
+			} else {
+				hashController.iniciaApp(tamanho);
+			}
+			
 			break;
 
 		case "ABB":
