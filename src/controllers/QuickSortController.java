@@ -3,7 +3,6 @@ package controllers;
 import estruturasDados.Tabela;
 import services.find.BuscaBinFindService;
 import services.sort.QuickSortService;
-import utils.Cronometro;
 import utils.InOutArquivos;
 
 public class QuickSortController extends SuperController{

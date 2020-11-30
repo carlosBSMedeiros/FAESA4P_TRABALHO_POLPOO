@@ -3,7 +3,6 @@ package controllers;
 
 import estruturasDados.FilaPessoa;
 import estruturasDados.SuperEstrutura;
-import estruturasDados.Tabela;
 import services.find.GenericFindService;
 
 public class Buscas {

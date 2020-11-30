@@ -3,11 +3,8 @@ package services.sort;
 import java.util.ArrayList;
 
 import estruturasDados.SuperEstrutura;
-import estruturasDados.Tabela;
 import estruturasDados.arvore.ArvoreABB;
 import estruturasDados.arvore.ArvoreAVL;
-import estruturasDados.arvore.NoArvore;
-import estruturasDados.arvore.NoArvoreAVL;
 import models.PessoaBanco;
 
 public class ArvoreSortService implements GenericSortService {

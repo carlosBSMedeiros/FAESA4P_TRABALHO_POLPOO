@@ -9,18 +9,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import controllers.Buscas;
-import controllers.SuperController;
+import estruturaDados.Hash.Hash;
 import estruturasDados.FilaPessoa;
 import estruturasDados.SuperEstrutura;
 import estruturasDados.Tabela;
 import estruturasDados.ListaEncadeada.No;
+import estruturasDados.arvore.ArvoreABB;
 import estruturasDados.arvore.ArvoreAVL;
 import models.PessoaBanco;
-import services.find.ArvoreFindService;
-import services.find.BuscaBinFindService;
 import services.find.GenericFindService;
-import estruturasDados.arvore.ArvoreABB;
-import estruturaDados.Hash.Hash;
 
 //	//cpf;nome;ag�ncia;conta;saldo
 
