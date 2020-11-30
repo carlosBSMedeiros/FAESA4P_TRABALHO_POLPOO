@@ -1,0 +1,1 @@
+guarda a media de tempo de execucao de cada metodos,tamanhos,tipos 
