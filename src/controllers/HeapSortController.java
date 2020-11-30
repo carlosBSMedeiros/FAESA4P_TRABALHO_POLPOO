@@ -2,22 +2,20 @@ package controllers;
 
 import estruturasDados.Tabela;
 import services.find.BuscaBinFindService;
-import services.sort.QuickSortService;
-import utils.Cronometro;
+import services.sort.HeapSortService;
 import utils.InOutArquivos;
 
-public class QuickSortBuscaBi extends SuperController{
+public class HeapSortController extends SuperController{
 
 	@Override
 	public void iniciaApp() {
-		super.iniciaApp("Quick");
+		super.iniciaApp("Heap");
 	}
 	
 	@Override
 	public void iniciaApp(String tamanho) {
-		super.iniciaApp("Quick",tamanho);
+		super.iniciaApp("Heap",tamanho);
 	}
-
 
 	@Override
 	public void instanciaEstrutura(int nElem) {
@@ -28,16 +26,15 @@ public class QuickSortBuscaBi extends SuperController{
 	public void povoaEstruturaPeloTXT(String fileName) {
 		if (getSistemaOperacional() == "Linux") {
 			InOutArquivos.leitorTXTPessoaBanco("arquivos_in/" + fileName, (Tabela) estrutura);
-		}
-		
-		if (getSistemaOperacional() == "Windows") {
+		}else {
 			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (Tabela) estrutura);
 		}
+		
 	}
 	
 	@Override
 	public void ordenaEstrutura() {
-		Ordenacoes.SortService((Tabela) estrutura, new QuickSortService());
+		Ordenacoes.SortService((Tabela) estrutura, new HeapSortService());
 	}
 
 	@Override
@@ -48,6 +45,8 @@ public class QuickSortBuscaBi extends SuperController{
 	@Override
 	public void buscaEGeraTXTSaida(String fileName) {
 		InOutArquivos.leitorTXTBusca((Tabela) estrutura, fileName, new BuscaBinFindService());
-		
 	}
+
+
+
 }

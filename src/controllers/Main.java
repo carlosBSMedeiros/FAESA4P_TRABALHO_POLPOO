@@ -11,7 +11,7 @@ public class Main {
 		
 		switch (metodo) {
 		case "Quick":
-			QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
+			QuickSortController buscaBi = new QuickSortController();
 			if (tamanho.equals("Todos")) {
 				buscaBi.iniciaApp();
 			} else {
@@ -20,7 +20,7 @@ public class Main {
 
 			break;
 		case "Heap":
-			HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
+			HeapSortController hpbb = new HeapSortController();
 			if (tamanho.equals("Todos")) {
 				hpbb.iniciaApp();
 			} else {
@@ -72,10 +72,10 @@ public class Main {
 	public void todosMetodosTamanhos() {
 		//metodo que rodará todos os metodos em todos os tamanhos
 
-		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
+		HeapSortController hpbb = new HeapSortController();
 		hpbb.iniciaApp();
 
-		QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
+		QuickSortController buscaBi = new QuickSortController();
 		buscaBi.iniciaApp();
 
 		ArvoreABBController abbController = new ArvoreABBController();
@@ -92,10 +92,10 @@ public class Main {
 	
 	public void todosMetodosUnicoTamanho(String tamanho) {
 		//metodo que rodará todos os metodos e um unico tamanho
-		HeapSortBuscaBi hpbb = new HeapSortBuscaBi();
+		HeapSortController hpbb = new HeapSortController();
 		hpbb.iniciaApp(tamanho);
 
-		QuickSortBuscaBi buscaBi = new QuickSortBuscaBi();
+		QuickSortController buscaBi = new QuickSortController();
 		buscaBi.iniciaApp(tamanho);
 
 		ArvoreABBController abbController = new ArvoreABBController();

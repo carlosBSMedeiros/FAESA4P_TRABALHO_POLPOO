@@ -1,9 +1,7 @@
 package controllers;
 
-import estruturasDados.Tabela;
-import services.find.HashFindService;
 import estruturaDados.Hash.Hash;
-import estruturaDados.Hash.NoHash;
+import services.find.HashFindService;
 import utils.InOutArquivos;
 
 public class HashingController extends SuperController {

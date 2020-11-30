@@ -26,9 +26,7 @@ public class ArvoreAVLController extends SuperController {
 	public void povoaEstruturaPeloTXT(String fileName) {
 		if (getSistemaOperacional() == "Linux") {
 			InOutArquivos.leitorTXTPessoaBanco("arquivos_in/" + fileName, (ArvoreAVL) estrutura);
-		}
-		
-		if (getSistemaOperacional() == "Windows") {
+		}else {
 			InOutArquivos.leitorTXTPessoaBanco("arquivos_in\\" + fileName, (ArvoreAVL) estrutura);
 		}
 	}
