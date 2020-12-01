@@ -13,45 +13,28 @@ public class ArvoreABB extends SuperEstrutura {
 	private NoArvore raiz;
 
 	public ArvoreABB() {
-
-	}
-
-	public ArvoreABB(NoArvore raiz) {
-		this.raiz = raiz;
+		this.raiz = null;
 	}
 
 	public NoArvore getRaiz() {
 		return raiz;
 	}
 
-	public void setRaiz(NoArvore raiz) {
-		this.raiz = raiz;
+	public void insereRaiz(PessoaBanco pessoaBanco) {
+		this.raiz = this.insere(pessoaBanco, this.raiz);
 	}
 
-	public boolean insere(PessoaBanco pessoa, ArvoreABB arvore) {
-		FilaPessoa existe;
-
-		ArvoreFindService service = new ArvoreFindService();
-
-		existe = service.find(arvore, pessoa.getCpf());
-		if (existe.getSize() > 0)
-			return false;
-		else {
-			arvore.setRaiz(this.insere(pessoa, arvore.getRaiz()));
-			return true;
-		}
-	}
-
-	private NoArvore insere(PessoaBanco pessoa, NoArvore no) {
+	private NoArvore insere(PessoaBanco pessoaBanco, NoArvore no) {
 		if (no == null) {
-			NoArvore novaPessoa = new NoArvore(pessoa);
-			return novaPessoa;
+			NoArvore novo = new NoArvore(pessoaBanco);
+			return novo;
 		} else {
-			if (Compare.pessoa(pessoa, no.getInfo()) < 0) {
-				no.setEsq(this.insere(pessoa, no.getEsq()));
+			
+			if (Compare.pessoa(pessoaBanco, no.getInfo()) < 0) {
+				no.setEsq(this.insere(pessoaBanco, no.getEsq()));
 				return no;
 			} else {
-				no.setDir(this.insere(pessoa, no.getDir()));
+				no.setDir(this.insere(pessoaBanco, no.getDir()));
 				return no;
 			}
 		}

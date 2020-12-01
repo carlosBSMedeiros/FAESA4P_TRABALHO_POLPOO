@@ -64,7 +64,7 @@ public class InOutArquivos {
 		} else if (estrutura instanceof Hash) {
 			((Hash) estrutura).insere(pessoa);
 		} else if (estrutura instanceof ArvoreABB) {
-			((ArvoreABB) estrutura).insere(pessoa, ((ArvoreABB) estrutura));
+			((ArvoreABB) estrutura).insereRaiz(pessoa);
 		}
 
 	}
