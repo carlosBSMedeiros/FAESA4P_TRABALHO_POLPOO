@@ -28,7 +28,6 @@ public class InOutArquivos {
 
 			BufferedReader buffRead = new BufferedReader(new FileReader(path));
 			String linha = "";
-
 			while (true) {
 				if (linha != null) {
 

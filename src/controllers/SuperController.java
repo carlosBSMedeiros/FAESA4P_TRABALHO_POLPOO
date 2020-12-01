@@ -19,27 +19,33 @@ public class SuperController implements InterfaceControllers {
 	}
 
 	public void iniciaApp(String metodoNome) {
+		boolean exececao = false;
 		for (int k = 0; k < tamanhos.length; k++) {
 
 			for (int j = 0; j < tiposArqs.length; j++) {
 
-				Cronometro.iniciaCronometro();
+				if (metodoNome.equals("ArvoreABB") && tamanhos[k] == 50000) {
+					if (tiposArqs[j].equals("ord") || tiposArqs[j].equals("inv")) {
+						inOutCron.incrementaTXT(metodoNome, tamanhos[k], tiposArqs[j], "Overflow");
+						exececao = true;
+					} else {
+						exececao = false;
+					}
 
-				for (int count = 0; count < 5; count++) {
-					instanciaEstrutura(tamanhos[k]);
-					povoaEstruturaPeloTXT("conta" + tamanhos[k] + tiposArqs[j] + ".txt");
-					ordenaEstrutura();
-					geraTXTOrdenado(metodoNome + tamanhos[k] + tiposArqs[j] + ".txt");
-					buscaEGeraTXTSaida(metodoNome + tamanhos[k] + tiposArqs[j] + "ResultBusca.txt");
 				}
+				if (exececao == false) {
+					Cronometro.iniciaCronometro();
 
-				Cronometro.paraCronometro();
+					for (int count = 0; count < 5; count++) {
+						padrao(metodoNome, Integer.toString(tamanhos[k]), tiposArqs[j]);
+					}
 
-				System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j] + ": "
-						+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
+					Cronometro.paraCronometro();
 
-				inOutCron.incrementaTXT(metodoNome, tamanhos[k], tiposArqs[j],calculaMediaTempoExecucao(Cronometro.getTempoExecucao()));
+					System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j] + ": "+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
 
+					inOutCron.incrementaTXT(metodoNome, tamanhos[k], tiposArqs[j],String.valueOf(calculaMediaTempoExecucao(Cronometro.getTempoExecucao()))+" ms");
+				}
 			}
 		}
 
@@ -47,25 +53,32 @@ public class SuperController implements InterfaceControllers {
 	}
 
 	public void iniciaApp(String metodoNome, String tamanho) {
-
+		boolean exececao = false;
+		
 		for (int j = 0; j < tiposArqs.length; j++) {
-
-			Cronometro.iniciaCronometro();
-
-			for (int count = 0; count < 5; count++) {
-				instanciaEstrutura(Integer.parseInt(tamanho));
-				povoaEstruturaPeloTXT("conta" + tamanho + tiposArqs[j] + ".txt");
-				ordenaEstrutura();
-				geraTXTOrdenado(metodoNome + tamanho + tiposArqs[j] + ".txt");
-				buscaEGeraTXTSaida(metodoNome + tamanho + tiposArqs[j] + "ResultBusca.txt");
+			if(metodoNome.equals("ArvoreABB") && tamanho.equals("50000")) {
+				if(tiposArqs[j].equals("ord") || tiposArqs[j].equals("inv")) {
+					inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j],"Overflow");
+					exececao = true;
+				} else {
+					exececao = false;
+				}
 			}
+			
+			if (exececao == false) {
 
-			Cronometro.paraCronometro();
+				Cronometro.iniciaCronometro();
 
-			System.out.println("Média de execução do metodo" + metodoNome + "" + tamanho + tiposArqs[j] + ": "
-					+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
+				for (int count = 0; count < 5; count++) {
+					padrao(metodoNome, tamanho, tiposArqs[j]);
+				}
 
-			inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j],calculaMediaTempoExecucao(Cronometro.getTempoExecucao()));
+				Cronometro.paraCronometro();
+
+				System.out.println("Média de execução do metodo" + metodoNome + "" + tamanho + tiposArqs[j] + ": "+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
+
+				inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j],String.valueOf((calculaMediaTempoExecucao(Cronometro.getTempoExecucao())))+" ms");
+			}
 		}
 
 		inOutCron.limpaArquivo();
@@ -73,6 +86,14 @@ public class SuperController implements InterfaceControllers {
 
 	}
 
+	private void padrao(String metodoNome, String tamanho, String tipo) {
+		instanciaEstrutura(Integer.parseInt(tamanho));
+		povoaEstruturaPeloTXT("conta" + tamanho +tipo + ".txt");
+		ordenaEstrutura();
+		geraTXTOrdenado(metodoNome + tamanho + tipo + ".txt");
+		buscaEGeraTXTSaida(metodoNome + tamanho + tipo + "ResultBusca.txt");
+	}
+	
 	public void instanciaEstrutura(int nElem) {
 
 	}

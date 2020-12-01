@@ -18,7 +18,7 @@ public class InOutCronometro {
 		strb = new StringBuilder();
 	}
 	
-	public void incrementaTXT(String metodoNome, int tamanho, String tipoArqs, double tempoExec) {
+	public void incrementaTXT(String metodoNome, int tamanho, String tipoArqs, String tempoExec) {
 		strb.append(metodoNome).append(";").append(tamanho).append(";").append(tipoArqs).append(";").append(tempoExec).append("\n");
 
 	}

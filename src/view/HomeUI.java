@@ -177,19 +177,19 @@ public class HomeUI extends JFrame {
 	private void entrocaTamanho(String[] strings, int linha, SaidaUI saidaUI, JTable table) {
 		switch (strings[1]) {
 		case "500":
-			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL500);
+			table.setValueAt(strings[3], linha, saidaUI.CL500);
 			break;
 		case "1000":
-			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL1000);
+			table.setValueAt(strings[3], linha, saidaUI.CL1000);
 			break;
 		case "5000":
-			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL5000);
+			table.setValueAt(strings[3], linha, saidaUI.CL5000);
 			break;
 		case "10000":
-			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL10000);
+			table.setValueAt(strings[3], linha, saidaUI.CL10000);
 			break;
 		case "50000":
-			table.setValueAt(strings[3]+" ms", linha, saidaUI.CL50000);
+			table.setValueAt(strings[3], linha, saidaUI.CL50000);
 			break;
 
 		default:
