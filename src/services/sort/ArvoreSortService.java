@@ -21,13 +21,12 @@ public class ArvoreSortService implements GenericSortService {
 
 	public void sort(ArvoreABB arvore) {
 		ArrayList<PessoaBanco> vetorOrdenado = arvore.InOrdem();
-
-		arvore = arvoreBalanceada(vetorOrdenado);
+		ArvoreABB arvoreBalanceada = arvoreBalanceada(vetorOrdenado, arvore);
+		arvore = arvoreBalanceada;
 	}
 
 
-	private ArvoreABB arvoreBalanceada(ArrayList<PessoaBanco> vetOrdenado) {
-		ArvoreABB arvore = new ArvoreABB();
+	private ArvoreABB arvoreBalanceada(ArrayList<PessoaBanco> vetOrdenado, ArvoreABB arvore) {
 		this.balancear(vetOrdenado, arvore, 0, vetOrdenado.size() - 1);
 		return arvore;
 	}
@@ -36,7 +35,7 @@ public class ArvoreSortService implements GenericSortService {
 		int meio;
 		if (fim >= inic) {
 			meio = (inic + fim) / 2;
-			arvore.insere(vet.get(meio), arvore);
+			arvore.insereRaiz(vet.get(meio));
 			this.balancear(vet, arvore, inic, meio - 1);
 			this.balancear(vet, arvore, meio + 1, fim);
 		}
