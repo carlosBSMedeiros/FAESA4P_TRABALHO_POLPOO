@@ -99,7 +99,7 @@ public class InOutArquivos {
 			buffWrite.close();
 
 		} catch (FileNotFoundException e) {
-			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NÃO ENCONTRADO");
+			System.out.println("ARQUIVO \"arquivos_in\\Conta.txt\" DE ENTRADA NAO ENCONTRADO");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();

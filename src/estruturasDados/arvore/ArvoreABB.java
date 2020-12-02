@@ -2,11 +2,9 @@ package estruturasDados.arvore;
 
 import java.util.ArrayList;
 
-import estruturasDados.FilaPessoa;
 import estruturasDados.SuperEstrutura;
 import metodos.Compare;
 import models.PessoaBanco;
-import services.find.ArvoreFindService;
 
 public class ArvoreABB extends SuperEstrutura {
 

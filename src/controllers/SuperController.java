@@ -19,21 +19,12 @@ public class SuperController implements InterfaceControllers {
 	}
 
 	public void iniciaApp(String metodoNome) {
-		boolean exececao = false;
+		
+		
 		for (int k = 0; k < tamanhos.length; k++) {
-
+			
 			for (int j = 0; j < tiposArqs.length; j++) {
-
-				if (metodoNome.equals("ArvoreABB") && tamanhos[k] == 50000) {
-					if (tiposArqs[j].equals("ord") || tiposArqs[j].equals("inv")) {
-						inOutCron.incrementaTXT(metodoNome, tamanhos[k], tiposArqs[j], "Overflow");
-						exececao = true;
-					} else {
-						exececao = false;
-					}
-
-				}
-				if (exececao == false) {
+				try {
 					Cronometro.iniciaCronometro();
 
 					for (int count = 0; count < 5; count++) {
@@ -42,31 +33,25 @@ public class SuperController implements InterfaceControllers {
 
 					Cronometro.paraCronometro();
 
-					System.out.println("Média de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j] + ": "+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
-
-					inOutCron.incrementaTXT(metodoNome, tamanhos[k], tiposArqs[j],String.valueOf(calculaMediaTempoExecucao(Cronometro.getTempoExecucao()))+" ms");
+					System.out.println("Media de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j] + ": "+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
+					inOutCron.incrementaTXT(metodoNome, tamanhos[k], tiposArqs[j],String.valueOf(calculaMediaTempoExecucao(Cronometro.getTempoExecucao())) + " ms");
+					
+				} catch (StackOverflowError e) {
+					inOutCron.incrementaTXT(metodoNome, tamanhos[k], tiposArqs[j], "Overflow");
+					System.out.println("Media de execução do metodo" + metodoNome + tamanhos[k] + tiposArqs[j] + ": "+ "StackOverflowError");
 				}
 			}
 		}
 
 		inOutCron.escreveTempoResultado();
+
 	}
 
 	public void iniciaApp(String metodoNome, String tamanho) {
-		boolean exececao = false;
 		
 		for (int j = 0; j < tiposArqs.length; j++) {
-			if(metodoNome.equals("ArvoreABB") && tamanho.equals("50000")) {
-				if(tiposArqs[j].equals("ord") || tiposArqs[j].equals("inv")) {
-					inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j],"Overflow");
-					exececao = true;
-				} else {
-					exececao = false;
-				}
-			}
-			
-			if (exececao == false) {
 
+			try {
 				Cronometro.iniciaCronometro();
 
 				for (int count = 0; count < 5; count++) {
@@ -75,10 +60,14 @@ public class SuperController implements InterfaceControllers {
 
 				Cronometro.paraCronometro();
 
-				System.out.println("Média de execução do metodo" + metodoNome + "" + tamanho + tiposArqs[j] + ": "+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
+				System.out.println("Media de execucao do metodo" + metodoNome + "" + tamanho + tiposArqs[j] + ": "+ calculaMediaTempoExecucao(Cronometro.getTempoExecucao()) + " milesegundos!\r");
+				inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j],String.valueOf((calculaMediaTempoExecucao(Cronometro.getTempoExecucao()))) + " ms");
 
-				inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j],String.valueOf((calculaMediaTempoExecucao(Cronometro.getTempoExecucao())))+" ms");
+			} catch (StackOverflowError e) {
+				inOutCron.incrementaTXT(metodoNome, Integer.parseInt(tamanho), tiposArqs[j], "Overflow");
+				System.out.println("Media de execucao do metodo" + metodoNome + tamanho + tiposArqs[j] + ": "+ "StackOverflowError");
 			}
+
 		}
 
 		inOutCron.limpaArquivo();

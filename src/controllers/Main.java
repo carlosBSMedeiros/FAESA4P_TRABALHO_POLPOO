@@ -63,7 +63,7 @@ public class Main {
 
 			break;
 		default:
-			InOutInterface.outputError("Opção não disponivel");
+			InOutInterface.outputError("Opcao nao disponivel");
 			break;
 		}
 
