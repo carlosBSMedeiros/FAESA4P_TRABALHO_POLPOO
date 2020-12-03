@@ -68,6 +68,7 @@ public class HomeUI extends JFrame {
 		comboBoxTamanhoArquivo.addItem("Todos");
 		comboBoxTamanhoArquivo.addItem("500");
 		comboBoxTamanhoArquivo.addItem("1000");
+		comboBoxTamanhoArquivo.addItem("5000");
 		comboBoxTamanhoArquivo.addItem("10000");
 		comboBoxTamanhoArquivo.addItem("50000");
 		getContentPane().add(comboBoxTamanhoArquivo);
