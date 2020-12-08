@@ -1,13 +1,17 @@
 package estruturasDados.arvore;
 
+import java.util.LinkedList;
+
 import models.PessoaBanco;
 
 public class NoArvore {
 	private PessoaBanco info;
 	private NoArvore dir, esq;
+	private LinkedList<PessoaBanco> pessoasBanco;
 
 	public NoArvore(PessoaBanco info) {
 		this.info = info;
+		this.pessoasBanco = new LinkedList<PessoaBanco>();
 	}
 
 	public PessoaBanco getInfo() {
@@ -33,5 +37,14 @@ public class NoArvore {
 	public void setEsq(NoArvore esq) {
 		this.esq = esq;
 	}
+
+	public LinkedList<PessoaBanco> getPessoaBancos() {
+		return pessoasBanco;
+	}
+
+	public void setPessoaBancoLinked(PessoaBanco pessoaBanco) {
+		this.pessoasBanco.add(pessoaBanco);
+	}
+	
 
 }

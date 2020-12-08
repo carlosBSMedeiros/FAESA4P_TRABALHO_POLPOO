@@ -5,6 +5,7 @@ import estruturasDados.SuperEstrutura;
 import estruturasDados.arvore.ArvoreABB;
 import estruturasDados.arvore.ArvoreAVL;
 import estruturasDados.arvore.NoArvore;
+import models.PessoaBanco;
 
 public class ArvoreFindService implements GenericFindService {
 
@@ -37,7 +38,11 @@ public class ArvoreFindService implements GenericFindService {
 	private NoArvore find(String cpfBusca, NoArvore no, FilaPessoa fila) {
 		if (no != null) {
 			if (no.getInfo().getCpf().compareTo(cpfBusca) == 0) {
+				
 				fila.enfileirar(no.getInfo());
+				for (PessoaBanco element : no.getPessoaBancos()) {
+					fila.enfileirar(element);
+				}
 			} else if (cpfBusca.compareTo(no.getInfo().getCpf()) < 0) {
 				no = find(cpfBusca, no.getEsq(), fila);
 			} else {

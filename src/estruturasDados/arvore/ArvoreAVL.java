@@ -43,8 +43,12 @@ public class ArvoreAVL extends SuperEstrutura {
 			this.h = true;
 			return novo;
 		} else {
-			
-			if (Compare.pessoa(pessoaBanco, no.getInfo()) < 0) {
+			if(no.getInfo().getCpf().compareTo(pessoaBanco.getCpf()) == 0) {
+				this.h = false;
+				no.setPessoaBancoLinked(pessoaBanco);
+				return (NoArvoreAVL) no;
+			}
+			else if (Compare.pessoa(pessoaBanco, no.getInfo()) < 0) {
 				// Insere � esquerda e verifica se precisa balancear � direita
 				no.setEsq(this.insere(pessoaBanco, no.getEsq()));
 				no = balancearDir(no, this.h);

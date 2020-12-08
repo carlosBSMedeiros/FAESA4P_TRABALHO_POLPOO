@@ -27,8 +27,12 @@ public class ArvoreABB extends SuperEstrutura {
 			NoArvore novo = new NoArvore(pessoaBanco);
 			return novo;
 		} else {
-			
-			if (Compare.pessoa(pessoaBanco, no.getInfo()) < 0) {
+			if (no.getInfo().getCpf().compareTo(pessoaBanco.getCpf()) == 0) {
+				if(Compare.pessoa(no.getInfo(), pessoaBanco) != 0) {
+					no.setPessoaBancoLinked(pessoaBanco);
+				}
+				return no;
+			} else if (Compare.pessoa(pessoaBanco, no.getInfo()) < 0) {
 				no.setEsq(this.insere(pessoaBanco, no.getEsq()));
 				return no;
 			} else {
